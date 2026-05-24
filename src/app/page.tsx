@@ -98,25 +98,25 @@ export default function Home() {
             />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-28">
-            <div className="grid w-full items-center gap-20 lg:grid-cols-[1.1fr_0.9fr]">
-              {/* LEFT */}
-              <div>
-                <div
-                  className={`inline-flex items-center gap-3 rounded-full border px-5 py-2 backdrop-blur-xl ${
-                    darkMode
-                      ? "border-white/10 bg-white/5"
-                      : "border-yellow-200 bg-white/80 shadow-lg"
-                  }`}
-                >
-                  <div className="h-2 w-2 rounded-full bg-yellow-400" />
+          <div className="relative z-10 mx-auto max-w-7xl px-6 pb-28 pt-40">
+            <div
+              className={`inline-flex items-center gap-3 rounded-full border px-5 py-2 backdrop-blur-xl ${
+                darkMode
+                  ? "border-white/10 bg-white/5"
+                  : "border-yellow-200 bg-white/80 shadow-lg"
+              }`}
+            >
+              <div className="h-2 w-2 rounded-full bg-yellow-400" />
 
-                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-yellow-500">
-                    Sun Life Centurion NBO
-                  </p>
-                </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-yellow-500">
+                Sun Life Centurion NBO
+              </p>
+            </div>
 
-                <h1 className="mt-8 text-6xl font-black leading-[0.95] tracking-[-0.04em] sm:text-7xl lg:text-[7rem]">
+            <div className="mt-10 grid w-full items-start gap-10 lg:mt-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:gap-16">
+              {/* LEFT — headline & CTAs */}
+              <div className="flex flex-col justify-center lg:min-h-[520px]">
+                <h1 className="text-6xl font-black leading-[0.95] tracking-[-0.04em] sm:text-7xl lg:text-[5.5rem] xl:text-[7rem]">
                   Empowering
                   <span className="block bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
                     Advisors
@@ -160,88 +160,51 @@ export default function Home() {
                     Join Our Team
                   </a>
                 </div>
-
-                {/* STATS */}
-                <div className="mt-16 grid gap-5 sm:grid-cols-3">
-                  {[
-                    {
-                      value: "2026",
-                      label: "Anchored & Becoming",
-                    },
-                    {
-                      value: "100%",
-                      label: "Purpose Driven",
-                    },
-                    {
-                      value: "∞",
-                      label: "Growth Mindset",
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className={`rounded-3xl border p-6 backdrop-blur-xl ${
-                        darkMode
-                          ? "border-white/10 bg-white/[0.03]"
-                          : "border-yellow-100 bg-white shadow-xl"
-                      }`}
-                    >
-                      <h3 className="text-3xl font-black text-yellow-500">
-                        {item.value}
-                      </h3>
-
-                      <p
-                        className={`mt-2 text-sm uppercase tracking-[0.2em] ${
-                          darkMode ? "text-white/50" : "text-slate-500"
-                        }`}
-                      >
-                        {item.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               </div>
 
-              {/* RIGHT */}
-              <div className="relative">
+              {/* RIGHT — image aligned with headline */}
+              <div className="relative w-full lg:sticky lg:top-40">
                 <div
-                  className={`relative overflow-hidden rounded-[2.5rem] border p-4 backdrop-blur-2xl ${
+                  className={`relative overflow-hidden rounded-[2.5rem] border p-3 backdrop-blur-2xl sm:p-4 ${
                     darkMode
                       ? "border-white/10 bg-white/[0.03]"
                       : "border-yellow-100 bg-white/70 shadow-2xl"
                   }`}
                 >
-                  <div className="relative overflow-hidden rounded-[2rem]">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] sm:aspect-[5/6] lg:aspect-[4/5]">
                     <Image
                       src={centurionTeam}
                       alt="Centurion Team"
-                      className="h-[620px] w-full object-cover"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 45vw"
+                      className="object-cover object-[center_22%]"
                     />
 
                     <div
                       className={`absolute inset-0 ${
                         darkMode
-                          ? "bg-gradient-to-t from-[#050816]"
-                          : "bg-gradient-to-t from-white/70"
-                      } via-transparent to-transparent`}
+                          ? "bg-gradient-to-t from-[#050816] via-[#050816]/20"
+                          : "bg-gradient-to-t from-white/80 via-white/20"
+                      } to-transparent`}
                     />
                   </div>
 
                   {/* FLOATING CARD */}
                   <div
-                    className={`absolute bottom-8 left-8 right-8 rounded-[2rem] border p-6 backdrop-blur-2xl ${
+                    className={`absolute bottom-4 left-4 right-4 rounded-[1.5rem] border p-5 backdrop-blur-2xl sm:bottom-6 sm:left-6 sm:right-6 sm:rounded-[2rem] sm:p-6 ${
                       darkMode
                         ? "border-white/10 bg-white/10"
                         : "border-white/50 bg-white/80 shadow-xl"
                     }`}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between gap-4">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-yellow-500">
                           Centurion Culture
                         </p>
 
                         <h2
-                          className={`mt-3 text-3xl font-black ${
+                          className={`mt-2 text-2xl font-black sm:mt-3 sm:text-3xl ${
                             darkMode ? "text-white" : "text-[#0f172a]"
                           }`}
                         >
@@ -249,13 +212,13 @@ export default function Home() {
                         </h2>
                       </div>
 
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-yellow-400 text-2xl font-black text-[#050816]">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-yellow-400 text-xl font-black text-[#050816] sm:h-16 sm:w-16 sm:text-2xl">
                         +
                       </div>
                     </div>
 
                     <p
-                      className={`mt-5 leading-8 ${
+                      className={`mt-4 text-sm leading-7 sm:mt-5 sm:text-base sm:leading-8 ${
                         darkMode ? "text-white/65" : "text-slate-600"
                       }`}
                     >
@@ -265,6 +228,45 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* STATS — full width below hero columns */}
+            <div className="mt-14 grid gap-5 sm:grid-cols-3 lg:mt-16">
+              {[
+                {
+                  value: "2026",
+                  label: "Anchored & Becoming",
+                },
+                {
+                  value: "100%",
+                  label: "Purpose Driven",
+                },
+                {
+                  value: "∞",
+                  label: "Growth Mindset",
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className={`rounded-3xl border p-6 backdrop-blur-xl ${
+                    darkMode
+                      ? "border-white/10 bg-white/[0.03]"
+                      : "border-yellow-100 bg-white shadow-xl"
+                  }`}
+                >
+                  <h3 className="text-3xl font-black text-yellow-500">
+                    {item.value}
+                  </h3>
+
+                  <p
+                    className={`mt-2 text-sm uppercase tracking-[0.2em] ${
+                      darkMode ? "text-white/50" : "text-slate-500"
+                    }`}
+                  >
+                    {item.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
