@@ -6,6 +6,7 @@ import { useTheme } from "@/context/ThemeContext";
 import centurionTeam from "@/../public/centurion-assets/centurion-team.jpg";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import HeroTypingHeadline from "@/components/HeroTypingHeadline";
 
 const coreValues = [
   {
@@ -67,8 +68,61 @@ export default function Home() {
       >
         {/* HERO */}
         <section className="relative isolate overflow-hidden">
-          {/* BACKGROUND */}
+          {/* BACKGROUND — Sun Life sun motif, same color palette */}
           <div className="absolute inset-0">
+            <div
+              className={`absolute inset-0 transition duration-700 ${
+                darkMode
+                  ? "bg-gradient-to-br from-[#050816] via-[#050816] to-[#0a1628]"
+                  : "bg-gradient-to-br from-white via-[#fffef8] to-[#f8fafc]"
+              }`}
+            />
+
+            {/* Sun glow — top left */}
+            <div
+              className={`pointer-events-none absolute -left-[12%] -top-[18%] h-[min(85vw,680px)] w-[min(85vw,680px)] rounded-full blur-3xl transition duration-700 ${
+                darkMode
+                  ? "bg-[radial-gradient(circle,rgb(250_204_21/0.35)_0%,rgb(250_204_21/0.12)_35%,transparent_68%)]"
+                  : "bg-[radial-gradient(circle,rgb(253_224_71/0.5)_0%,rgb(254_240_138/0.25)_40%,transparent_70%)]"
+              }`}
+            />
+
+            <div
+              className={`pointer-events-none absolute left-[-10%] top-[-10%] h-[500px] w-[500px] rounded-full blur-3xl transition duration-700 ${
+                darkMode ? "bg-yellow-400/20" : "bg-yellow-300/30"
+              }`}
+            />
+
+            <div
+              className={`pointer-events-none absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full blur-3xl transition duration-700 ${
+                darkMode ? "bg-blue-500/20" : "bg-yellow-200/40"
+              }`}
+            />
+
+            {/* Decorative sun rings */}
+            <div
+              className={`sunlife-arc pointer-events-none absolute -left-24 -top-24 h-[min(100vw,520px)] w-[min(100vw,520px)] transition duration-700 ${
+                darkMode ? "border-yellow-400/10" : "border-yellow-400/20"
+              }`}
+            />
+            <div
+              className={`sunlife-arc pointer-events-none absolute -left-16 -top-16 h-[min(80vw,420px)] w-[min(80vw,420px)] transition duration-700 ${
+                darkMode ? "border-yellow-400/5" : "border-yellow-300/15"
+              }`}
+            />
+
+            <div
+              className={`sunlife-rays pointer-events-none absolute inset-0 transition duration-700 ${
+                darkMode ? "opacity-50" : "opacity-70"
+              }`}
+            />
+
+            <div
+              className={`sunlife-mesh pointer-events-none absolute inset-0 transition duration-700 ${
+                darkMode ? "opacity-35" : "opacity-50"
+              }`}
+            />
+
             <Image
               src={centurionTeam}
               alt="Centurion Team"
@@ -81,19 +135,9 @@ export default function Home() {
 
             <div
               className={`absolute inset-0 transition duration-700 ${
-                darkMode ? "bg-[#050816]" : "bg-white"
-              }`}
-            />
-
-            <div
-              className={`absolute left-[-10%] top-[-10%] h-[500px] w-[500px] rounded-full blur-3xl ${
-                darkMode ? "bg-yellow-400/20" : "bg-yellow-300/30"
-              }`}
-            />
-
-            <div
-              className={`absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full blur-3xl ${
-                darkMode ? "bg-blue-500/20" : "bg-yellow-200/40"
+                darkMode
+                  ? "bg-gradient-to-b from-[#050816]/40 via-[#050816]/70 to-[#050816]"
+                  : "bg-gradient-to-b from-white/20 via-white/50 to-white"
               }`}
             />
           </div>
@@ -116,20 +160,7 @@ export default function Home() {
             <div className="mt-10 grid w-full items-start gap-10 lg:mt-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:gap-16">
               {/* LEFT — headline & CTAs */}
               <div className="flex flex-col justify-center lg:min-h-[520px]">
-                <h1 className="text-6xl font-black leading-[0.95] tracking-[-0.04em] sm:text-7xl lg:text-[5.5rem] xl:text-[7rem]">
-                  Empowering
-                  <span className="block bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent">
-                    Advisors
-                  </span>
-
-                  <span
-                    className={`block ${
-                      darkMode ? "text-white/90" : "text-[#0f172a]"
-                    }`}
-                  >
-                    Protecting Futures
-                  </span>
-                </h1>
+                <HeroTypingHeadline darkMode={darkMode} />
 
                 <p
                   className={`mt-8 max-w-2xl text-lg leading-9 ${

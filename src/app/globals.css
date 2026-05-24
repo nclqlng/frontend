@@ -17,3 +17,25 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
+
+/* Sun Life–inspired backdrop motifs (uses existing yellow palette only) */
+.sunlife-rays {
+  background: repeating-conic-gradient(
+    from -10deg at 14% 10%,
+    transparent 0deg 10deg,
+    rgb(250 204 21 / 0.1) 10deg 11deg,
+    transparent 11deg 22deg
+  );
+}
+
+.sunlife-mesh {
+  background-image:
+    linear-gradient(rgb(250 204 21 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(250 204 21 / 0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+.sunlife-arc {
+  border-radius: 50%;
+  border: 1px solid rgb(250 204 21 / 0.12);
+}
