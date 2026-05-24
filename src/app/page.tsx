@@ -3,10 +3,13 @@
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
 
+import missionCenturion from "@/../public/centurion-assets/mission-centurion.jpg";
+import mdrtAwardees from "@/../public/centurion-assets/mdrt.jpg";
 import centurionTeam from "@/../public/centurion-assets/centurion-team.jpg";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HeroTypingHeadline from "@/components/HeroTypingHeadline";
+import MissionVisionSection from "@/components/MissionVisionSection";
 
 const coreValues = [
   {
@@ -302,66 +305,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* MISSION */}
-        <section className="px-6 pb-32">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
-            {/* MISSION CARD */}
-            <div
-              className={`rounded-[2.5rem] border p-10 backdrop-blur-2xl transition duration-500 ${
-                darkMode
-                  ? "border-white/10 bg-white/[0.03]"
-                  : "border-yellow-100 bg-white shadow-2xl"
-              }`}
-            >
-              <p className="text-sm font-bold uppercase tracking-[0.3em] text-yellow-500">
-                Mission
-              </p>
-
-              <h3
-                className={`mt-5 text-5xl font-black leading-tight ${
-                  darkMode ? "text-white" : "text-[#0f172a]"
-                }`}
-              >
-                Empowering advisors with purpose.
-              </h3>
-
-              <p
-                className={`mt-6 text-lg leading-9 ${
-                  darkMode ? "text-white/60" : "text-slate-600"
-                }`}
-              >
-                Developing purpose-driven financial advisors through mentorship,
-                collaboration, and excellence in service.
-              </p>
-            </div>
-
-            {/* VISION CARD */}
-            <div
-              className={`rounded-[2.5rem] p-10 transition duration-500 ${
-                darkMode
-                  ? "bg-gradient-to-br from-yellow-300 to-yellow-500 text-[#050816]"
-                  : "border border-yellow-200 bg-gradient-to-br from-yellow-100 to-yellow-300 text-[#0f172a] shadow-2xl"
-              }`}
-            >
-              <p className="text-sm font-bold uppercase tracking-[0.3em]">
-                Vision
-              </p>
-
-              <h3 className="mt-5 text-5xl font-black leading-tight">
-                Protecting brighter futures.
-              </h3>
-
-              <p
-                className={`mt-6 text-lg leading-9 ${
-                  darkMode ? "text-[#050816]/80" : "text-[#0f172a]/70"
-                }`}
-              >
-                Becoming a trusted community known for integrity, growth, and
-                meaningful impact in Filipino families.
-              </p>
-            </div>
-          </div>
-        </section>
+        <MissionVisionSection
+          darkMode={darkMode}
+          missionImage={missionCenturion}
+          visionImage={mdrtAwardees}
+        />
 
         {/* CORE VALUES */}
         <section
