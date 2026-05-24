@@ -39,3 +39,54 @@ body {
   border-radius: 50%;
   border: 1px solid rgb(250 204 21 / 0.12);
 }
+
+@keyframes mv-shine {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-12deg);
+  }
+}
+
+@keyframes mv-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes mv-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.mv-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.12) 50%,
+    transparent 60%
+  );
+  animation: mv-shine 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.mv-glow-orb {
+  animation: mv-glow-pulse 5s ease-in-out infinite;
+}
+
+.mv-float-badge {
+  animation: mv-float 4s ease-in-out infinite;
+}
