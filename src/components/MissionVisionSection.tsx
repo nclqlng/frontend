@@ -334,7 +334,7 @@ export default function MissionVisionSection({
         }`}
       />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto mt-14 max-w-7xl">
         <div
           className={`mb-16 text-center transition-all duration-1000 lg:mb-20 ${
             sectionVisible
@@ -342,7 +342,7 @@ export default function MissionVisionSection({
               : "translate-y-10 opacity-0"
           }`}
         >
-          <div className="mv-float-badge inline-flex items-center gap-2 rounded-full border border-yellow-400/35 bg-yellow-400/10 px-4 py-1.5 shadow-[0_0_24px_-4px_rgba(250,204,21,0.4)]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/35 bg-yellow-400/10 px-4 py-1.5 animate-[float_4s_ease-in-out_infinite]">
             <Sparkles className="h-4 w-4 text-yellow-500" />
             <span className="text-xs font-bold uppercase tracking-[0.3em] text-yellow-500">
               Purpose & Direction

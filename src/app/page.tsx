@@ -9,40 +9,10 @@ import centurionTeam from "@/../public/centurion-assets/centurion-team.jpg";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HeroTypingHeadline from "@/components/HeroTypingHeadline";
+import CoreValuesSection from "@/components/CoreValuesSection";
 import MissionVisionSection from "@/components/MissionVisionSection";
+import CampaignsRecognitionSection from "@/components/CampaignsRecognitionSection";
 
-const coreValues = [
-  {
-    title: "Courage",
-    letter: "C",
-    description:
-      "Taking action in adversity and overcoming challenges with perseverance.",
-  },
-  {
-    title: "Honor",
-    letter: "H",
-    description:
-      "Leading with integrity, transparency, gratitude, and respect.",
-  },
-  {
-    title: "Accountability",
-    letter: "A",
-    description:
-      "Owning our actions, commitments, and growth with responsibility.",
-  },
-  {
-    title: "Excellence",
-    letter: "E",
-    description:
-      "Delivering quality work with consistency, care, and competence.",
-  },
-  {
-    title: "Leadership",
-    letter: "L",
-    description:
-      "Influencing others through service, stewardship, and example.",
-  },
-];
 
 const recognitions = [
   "League of Legends",
@@ -62,7 +32,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main
+      <main id="home"
         className={`overflow-hidden transition-colors duration-500 ${
           darkMode
             ? "bg-[#050816] text-white"
@@ -311,184 +281,12 @@ export default function Home() {
           visionImage={mdrtAwardees}
         />
 
-        {/* CORE VALUES */}
-        <section
-          id="core-values"
-          className="relative overflow-hidden px-6 py-32"
-        >
-          <div className="relative mx-auto max-w-7xl">
-            <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
-              <div className="max-w-3xl">
-                <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-500">
-                  Core Values
-                </p>
+        <CoreValuesSection darkMode={darkMode} />
 
-                <h2
-                  className={`mt-5 text-5xl font-black leading-[1] tracking-[-0.04em] sm:text-7xl ${
-                    darkMode ? "text-white" : "text-[#0f172a]"
-                  }`}
-                >
-                  The foundation
-                  <span
-                    className={`block ${
-                      darkMode ? "text-white/40" : "text-slate-400"
-                    }`}
-                  >
-                    of our culture
-                  </span>
-                </h2>
-              </div>
-
-              <p
-                className={`max-w-lg text-lg leading-9 ${
-                  darkMode ? "text-white/55" : "text-slate-600"
-                }`}
-              >
-                Our values shape the way we lead, serve, collaborate, and create
-                impact as one Centurion community.
-              </p>
-            </div>
-
-            <div className="mt-20 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
-              {coreValues.map((value, index) => (
-                <div
-                  key={value.title}
-                  className={`group relative overflow-hidden rounded-[2rem] border p-7 backdrop-blur-2xl transition duration-500 hover:-translate-y-2 ${
-                    darkMode
-                      ? "border-white/10 bg-white/[0.03] hover:border-yellow-400/30 hover:bg-white/[0.06]"
-                      : "border-yellow-100 bg-white shadow-xl hover:border-yellow-300"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-300 to-yellow-500 text-2xl font-black text-[#050816]">
-                      {value.letter}
-                    </div>
-
-                    <p
-                      className={`text-sm font-bold ${
-                        darkMode ? "text-white/30" : "text-slate-300"
-                      }`}
-                    >
-                      0{index + 1}
-                    </p>
-                  </div>
-
-                  <h3
-                    className={`mt-8 text-3xl font-black tracking-tight ${
-                      darkMode ? "text-white" : "text-[#0f172a]"
-                    }`}
-                  >
-                    {value.title}
-                  </h3>
-
-                  <div className="mt-5 h-px w-full bg-gradient-to-r from-yellow-400/70 to-transparent" />
-
-                  <p
-                    className={`mt-6 leading-8 ${
-                      darkMode ? "text-white/60" : "text-slate-600"
-                    }`}
-                  >
-                    {value.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CAMPAIGNS & RECOGNITION */}
-        <section className="px-6 pb-32">
-          <div
-            className={`mx-auto max-w-7xl rounded-[3rem] border p-10 backdrop-blur-2xl transition duration-500 ${
-              darkMode
-                ? "border-white/10 bg-white/[0.03]"
-                : "border-yellow-100 bg-white/80 shadow-2xl"
-            }`}
-          >
-            <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
-              <div>
-                <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-500">
-                  Campaigns & Recognition
-                </p>
-
-                <h2
-                  className={`mt-5 text-5xl font-black leading-[1] tracking-[-0.04em] ${
-                    darkMode ? "text-white" : "text-[#0f172a]"
-                  }`}
-                >
-                  #2026
-                  <span
-                    className={`block ${
-                      darkMode ? "text-white/40" : "text-slate-400"
-                    }`}
-                  >
-                    ANCHORED AND BECOMING
-                  </span>
-                </h2>
-              </div>
-
-              <p
-                className={`max-w-xl text-lg leading-9 ${
-                  darkMode ? "text-white/55" : "text-slate-600"
-                }`}
-              >
-                A curated showcase of campaigns, recognitions, and standout
-                achievements that define growth and impact across the Centurion
-                community.
-              </p>
-            </div>
-
-            <div className="relative mt-16">
-              <div
-                className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-6"
-                style={{
-                  scrollbarWidth: "none",
-                }}
-              >
-                {recognitions.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`relative flex min-w-[320px] flex-shrink-0 snap-center rounded-[2.2rem] border p-8 transition-all duration-300 hover:scale-[1.04] sm:min-w-[380px] ${
-                      darkMode
-                        ? "border-white/10 bg-white/[0.04] hover:bg-white/[0.07]"
-                        : "border-yellow-100 bg-white shadow-lg hover:shadow-2xl"
-                    }`}
-                  >
-                    <div className="absolute -left-10 -top-10 h-28 w-28 rounded-full bg-yellow-400/10 blur-3xl" />
-
-                    <div className="mb-5 flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-yellow-400" />
-                      <span className="text-xs uppercase tracking-widest text-yellow-500">
-                        Featured Recognition
-                      </span>
-                    </div>
-
-                    <p
-                      className={`text-lg font-semibold leading-8 ${
-                        darkMode ? "text-white/90" : "text-slate-800"
-                      }`}
-                    >
-                      {item}
-                    </p>
-
-                    <div className="mt-6 flex items-center justify-between">
-                      <span className="text-sm text-yellow-500/70">
-                        View recognition →
-                      </span>
-
-                      <span className="text-xs text-white/30">
-                        #{String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-black/0 to-transparent" />
-              <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-black/0 to-transparent" />
-            </div>
-          </div>
-        </section>
+        <CampaignsRecognitionSection
+          darkMode={darkMode}
+          recognitions={recognitions}
+        />
 
         <Footer />
       </main>

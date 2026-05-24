@@ -3,29 +3,36 @@
 import { Search, Menu } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import ThemeToggle from "@/components/ThemeToggle";
+import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
-  "Home",
-  "Training and Development",
-  "Recruitment Hub",
-  "Calendar",
-  "Gallery",
-  "Our Team",
+  { label: "Home", path: "/" },
+  { label: "Training and Development", path: "/training-dev" },
+  { label: "Recruitment Hub", path: "/recruitment-hub" },
+  { label: "Calendar", path: "/calendar" },
+  { label: "Gallery", path: "/gallery" },
+  { label: "Our Team", path: "/team" },
 ];
 
 export default function Header() {
   const { darkMode } = useTheme();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigate = (path: string) => {
+    router.push(path);
+  };
 
   return (
     <header className="fixed left-0 top-0 z-[999] w-full px-6 pt-6">
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between rounded-2xl border px-6 py-4 backdrop-blur-2xl transition duration-500 ${
+        className={`mx-auto flex max-w-7xl items-center justify-between rounded-2xl border px-6 py-4 backdrop-blur-2xl transition-all duration-500 ${
           darkMode
             ? "border-white/10 bg-[#050816]/70"
             : "border-yellow-100 bg-white/80 shadow-xl"
         }`}
       >
-        {/* LOGO */}
+        {/* ================= LOGO ================= */}
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-yellow-300 to-yellow-500 font-black text-[#050816]">
             C
@@ -50,23 +57,39 @@ export default function Header() {
           </div>
         </div>
 
-        {/* NAVIGATION */}
+        {/* ================= NAVIGATION ================= */}
         <nav className="hidden items-center gap-8 xl:flex">
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className={`text-sm font-semibold transition hover:text-yellow-500 ${
-                darkMode ? "text-white/70" : "text-slate-600"
-              }`}
-            >
-              {item}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isActive = pathname === item.path;
+
+            return (
+              <button
+                key={item.path}
+                onClick={() => handleNavigate(item.path)}
+                className={`relative text-sm font-semibold transition duration-300 ${
+                  isActive
+                    ? "text-yellow-500"
+                    : darkMode
+                    ? "text-white/70 hover:text-yellow-500"
+                    : "text-slate-600 hover:text-yellow-500"
+                }`}
+              >
+                {item.label}
+
+                {/* ACTIVE INDICATOR */}
+                <span
+                  className={`absolute -bottom-2 left-0 h-[2px] w-full origin-left scale-x-0 bg-yellow-400 transition-transform duration-300 ${
+                    isActive ? "scale-x-100" : ""
+                  }`}
+                />
+              </button>
+            );
+          })}
         </nav>
 
-        {/* RIGHT SIDE */}
+        {/* ================= RIGHT SIDE ================= */}
         <div className="flex items-center gap-3">
+
           {/* SEARCH */}
           <div
             className={`hidden items-center gap-3 rounded-2xl border px-4 py-3 lg:flex ${
@@ -91,12 +114,13 @@ export default function Header() {
             />
           </div>
 
+          {/* THEME */}
           <ThemeToggle />
 
           {/* MOBILE MENU */}
           <button
             type="button"
-            className={`flex h-12 w-12 items-center justify-center rounded-2xl border xl:hidden ${
+            className={`flex h-12 w-12 items-center justify-center rounded-2xl border xl:hidden transition ${
               darkMode
                 ? "border-white/10 bg-white/[0.04] text-white"
                 : "border-yellow-100 bg-white text-[#0f172a]"

@@ -18,6 +18,10 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Sun Life–inspired backdrop motifs (uses existing yellow palette only) */
 .sunlife-rays {
   background: repeating-conic-gradient(

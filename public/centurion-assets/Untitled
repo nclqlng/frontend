@@ -1,0 +1,120 @@
+{/* CAMPAIGNS & RECOGNITION */}
+<section className="px-6 pb-32">
+  <div
+    className={`mx-auto max-w-7xl rounded-[3rem] border p-10 backdrop-blur-2xl transition-all duration-700 ${
+      darkMode
+        ? "border-white/10 bg-white/[0.03]"
+        : "border-yellow-100 bg-white/80 shadow-2xl"
+    }`}
+  >
+    {/* HEADER */}
+    <div className="flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
+      <div>
+        <p className="text-sm font-bold uppercase tracking-[0.35em] text-yellow-500 animate-pulse">
+          Campaigns & Recognition
+        </p>
+
+        <h2
+          className={`mt-5 text-5xl font-black leading-[1] tracking-[-0.04em] ${
+            darkMode ? "text-white" : "text-[#0f172a]"
+          }`}
+        >
+          #2026
+          <span
+            className={`block transition-all duration-700 ${
+              darkMode ? "text-white/40" : "text-slate-400"
+            }`}
+          >
+            ANCHORED AND BECOMING
+          </span>
+        </h2>
+      </div>
+
+      <p
+        className={`max-w-xl text-lg leading-9 ${
+          darkMode ? "text-white/55" : "text-slate-600"
+        }`}
+      >
+        A curated showcase of campaigns, recognitions, and standout
+        achievements that define growth and impact across the Centurion
+        community.
+      </p>
+    </div>
+
+    {/* CAROUSEL */}
+    <div className="relative mt-16">
+      <div
+        className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-6"
+        style={{ scrollbarWidth: "none" }}
+      >
+        {recognitions.map((item, index) => {
+          // rotate media per card (you can adjust mapping)
+          const media =
+            index % 3 === 0
+              ? "/centurion-assets/medallion-gif.gif"
+              : index % 3 === 1
+              ? "/centurion-assets/mc-gid.gif"
+              : "/centurion-assets/mdrt-gif.gif";
+
+          return (
+            <div
+              key={index}
+              className={`group relative flex min-w-[320px] flex-shrink-0 snap-center overflow-hidden rounded-[2.2rem] border p-0 transition-all duration-500 hover:scale-[1.04] hover:-translate-y-1 sm:min-w-[380px] ${
+                darkMode
+                  ? "border-white/10 bg-white/[0.04] hover:bg-white/[0.07]"
+                  : "border-yellow-100 bg-white shadow-lg hover:shadow-2xl"
+              }`}
+            >
+              {/* glow */}
+              <div className="pointer-events-none absolute -left-10 -top-10 h-32 w-32 rounded-full bg-yellow-400/10 blur-3xl opacity-70 group-hover:opacity-100 transition" />
+
+              {/* MEDIA SECTION (MAIN FOCUS) */}
+              <div className="relative h-44 w-full overflow-hidden">
+                <img
+                  src={media}
+                  alt="recognition media"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+
+                {/* overlay shine */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+
+              {/* CONTENT */}
+              <div className="relative p-8">
+                <div className="mb-5 flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
+                  <span className="text-xs uppercase tracking-widest text-yellow-500">
+                    Featured Recognition
+                  </span>
+                </div>
+
+                <p
+                  className={`text-lg font-semibold leading-8 transition-colors duration-300 ${
+                    darkMode ? "text-white/90" : "text-slate-800"
+                  }`}
+                >
+                  {item}
+                </p>
+
+                <div className="mt-6 flex items-center justify-between">
+                  <span className="text-sm text-yellow-500/70 group-hover:text-yellow-500 transition">
+                    View recognition →
+                  </span>
+
+                  <span className="text-xs text-white/30">
+                    #{String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* EDGE GRADIENTS */}
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-black/0 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-black/0 to-transparent" />
+    </div>
+  </div>
+</section>
