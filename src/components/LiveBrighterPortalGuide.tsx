@@ -85,13 +85,24 @@ export default function LiveBrighterPortalGuide() {
         </div>
 
         <h2
-          className={`mt-6 text-4xl font-black sm:text-5xl lg:text-6xl ${
-            darkMode ? "text-white" : "text-[#0f172a]"
-          }`}
-        >
-          LIVE BRIGHTER PORTAL
-        </h2>
+            className={`mt-6 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl ${
+                darkMode ? "text-white" : "text-[#0f172a]"
+            }`}
+            >
+            Live{" "}
+            <span className="relative inline-block">
+                <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent">
+            Brighter
+                </span>
 
+                {/* glow underline */}
+                <span
+                className="absolute -bottom-1 left-0 h-3 w-full bg-yellow-400/30 blur-sm"
+                aria-hidden
+                />
+            </span>{" "}
+            Portal
+        </h2>
         <p
           className={`mx-auto mt-4 max-w-3xl text-sm leading-7 ${
             darkMode ? "text-white/60" : "text-slate-600"
