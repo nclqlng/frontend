@@ -1,43 +1,42 @@
 @import "tailwindcss";
 
-/* Gotham — place .woff2 files in public/fonts/ (Book, Medium, Bold, Black) */
-@font-face {
-  font-family: "Gotham";
-  src: url("/fonts/Gotham-Book.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Gotham";
-  src: url("/fonts/Gotham-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Gotham";
-  src: url("/fonts/Gotham-Bold.woff2") format("woff2");
-  font-weight: 700 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Gotham";
-  src: url("/fonts/Gotham-Black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
+/*
+ * Gotham: add .woff2 files to public/fonts/, then uncomment below and set:
+ * --font-gotham: "Gotham", "Century Gothic", system-ui, sans-serif;
+ *
+ * @font-face {
+ *   font-family: "Gotham";
+ *   src: url("/fonts/Gotham-Book.woff2") format("woff2");
+ *   font-weight: 400;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ * @font-face {
+ *   font-family: "Gotham";
+ *   src: url("/fonts/Gotham-Medium.woff2") format("woff2");
+ *   font-weight: 500;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ * @font-face {
+ *   font-family: "Gotham";
+ *   src: url("/fonts/Gotham-Bold.woff2") format("woff2");
+ *   font-weight: 700 900;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ * @font-face {
+ *   font-family: "Gotham";
+ *   src: url("/fonts/Gotham-Black.woff2") format("woff2");
+ *   font-weight: 900;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ */
 :root {
   --background: #050816;
   --foreground: #ffffff;
-  --font-gotham: "Gotham", "Gotham SSm A", "Gotham SSm B", "Century Gothic",
-    system-ui, sans-serif;
+  --font-gotham: "Century Gothic", "Trebuchet MS", system-ui, sans-serif;
 }
 
 @theme inline {
