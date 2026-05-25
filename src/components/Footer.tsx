@@ -64,12 +64,13 @@ export default function Footer() {
             {/* BRAND */}
             <div className="space-y-6">
               <div className="flex items-center gap-5">
-                <Image
+              <Image
                   src="/centurion-assets/ctnbo-logo.png"
                   alt="Centurion NBO"
-                  width={120}
-                  height={120}
-                  className="h-12 w-auto object-contain sm:h-14"
+                  width={140}
+                  height={140}
+                  priority
+                  className="h-12 w-auto object-contain sm:h-16"
                 />
 
                 <div>

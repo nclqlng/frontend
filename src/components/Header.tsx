@@ -84,14 +84,14 @@ export default function Header() {
               className="shrink-0"
               aria-label="Centurion NBO home"
             >
-              <Image
-                src="/centurion-assets/ctnbo-logo.png"
-                alt="Centurion NBO"
-                width={112}
-                height={112}
-                priority
-                className="h-11 w-auto object-contain sm:h-14"
-              />
+         <Image
+              src="/centurion-assets/ctnbo-logo.png"
+              alt="Centurion NBO"
+              width={140}
+              height={140}
+              priority
+              className="h-12 w-auto object-contain sm:h-16"
+            />
             </button>
 
             {/* DESKTOP NAV */}

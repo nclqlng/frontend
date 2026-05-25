@@ -48,14 +48,7 @@ const coreValues: CoreValue[] = [
       "Owning our actions, commitments, and growth with responsibility.",
     icon: CheckCircle2,
   },
-  {
-    title: "Excellence",
-    letter: "E",
-    tagline: "Raise the bar",
-    description:
-      "Delivering quality work with consistency, care, and competence.",
-    icon: Star,
-  },
+
   {
     title: "Leadership",
     letter: "L",
@@ -63,6 +56,14 @@ const coreValues: CoreValue[] = [
     description:
       "Influencing others through service, stewardship, and example.",
     icon: Users,
+  },
+  {
+    title: "Excellence",
+    letter: "E",
+    tagline: "Raise the bar",
+    description:
+      "Delivering quality work with consistency, care, and competence.",
+    icon: Star,
   },
 ];
 
@@ -322,7 +323,7 @@ export default function CoreValuesSection({
               darkMode ? "text-white/60" : "text-slate-600"
             }`}
           >
-            <span className="font-black text-yellow-500">C.H.A.E.L.</span> —
+            <span className="font-black text-yellow-500">C.H.A.L.E.</span> —
             the character standard behind every Centurion advisor.
           </p>
 
