@@ -1,5 +1,6 @@
 "use client";
 
+import { SectionTitleHighlight } from "@/components/SectionHeading";
 import { Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -115,8 +116,13 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
         >
           #2026
           <br />
-          <span>
-            <span className="italic text-yellow-500">ANCHORED</span> AND BECOMING
+          <SectionTitleHighlight>ANCHORED</SectionTitleHighlight>
+          <br />
+          <span className={darkMode ? "text-white" : "text-[#0f172a]"}>
+            AND{" "}
+            <span className={darkMode ? "text-blue-400" : "text-blue-700"}>
+              BECOMING
+            </span>
           </span>
         </h2>
       </div>
@@ -150,15 +156,15 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
         />
 
         <Medal
-          href="https://drive.google.com/file/d/1A93wmFABPWFgwMlwgbEjOmsdeD8-yWHI/view?usp=drivesdk"
-          src="/centurion-assets/mdrt-gif.gif"
-          alt="MDRT Recognition"
+          href="https://p1.aprimocdn.net/sunlife/5ab17fed-0548-44e9-8444-b321005592b7/2026%20mdrt%20guidelines-original-file.pdf"
+          src="/centurion-assets/mc-gid.gif"
+          alt="Macaulay Club Recognition"
         />
 
         <Medal
-          href="https://p1.aprimocdn.net/sunlife/5ab17fed-0548-44e9-8444-b321005592b7/2026%20mdrt%20guidelines-original-file.pdf"
-          src="/centurion-assets/mc-gid.gif"
-          alt="Campaign Recognition"
+          href="https://drive.google.com/file/d/1A93wmFABPWFgwMlwgbEjOmsdeD8-yWHI/view?usp=drivesdk"
+          src="/centurion-assets/mdrt-gif.gif"
+          alt="MDRT Recognition"
         />
       </div>
 
@@ -193,21 +199,21 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
       </p>
     </div>
 
-    {/* Performance */}
+    {/* Macaulay Club */}
     <div className="group relative px-8 py-5 rounded-full backdrop-blur-md border border-yellow-400/30 bg-white/5 hover:bg-yellow-400/10 transition-all duration-500">
       <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 blur-xl" />
 
       <p className="relative text-sm font-semibold tracking-[0.3em] text-yellow-500">
-        MDRT
+        MACAULAY CLUB
       </p>
     </div>
 
-    {/* Leadership */}
+    {/* MDRT */}
     <div className="group relative px-8 py-5 rounded-full backdrop-blur-md border border-yellow-400/30 bg-white/5 hover:bg-yellow-400/10 transition-all duration-500">
       <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 blur-xl" />
 
-      <p className="relative text-sm font-semibold tracking-[0.3em] text-yellow-500">
-       MACAULAY CLUB
+      <p className="relative text-center text-sm font-semibold tracking-[0.3em] text-yellow-500">
+        MILLION DOLLAR ROUND TABLE (MDRT)
       </p>
     </div>
   </div>

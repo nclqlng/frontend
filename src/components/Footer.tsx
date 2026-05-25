@@ -74,7 +74,7 @@ export default function Footer() {
 
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.42em] text-yellow-500">
-                    Centurion
+                    Centurion Tree
                   </p>
                   <p className={`text-sm ${
                     darkMode ? "text-white/60" : "text-slate-500"
@@ -94,7 +94,7 @@ export default function Footer() {
 
               <div className="flex items-center gap-2 text-sm font-medium text-yellow-500">
                 <HeartHandshake className="h-4 w-4" />
-                Build your future with us
+                Build Your Future With Us
               </div>
             </div>
 

@@ -271,7 +271,7 @@ export default function RecruitmentTrainingReviewer() {
           <span className="font-bold text-yellow-500">SSO access required</span>{" "}
           for TRAD and VUL walkthrough materials. Use credentials:{" "}
           <span
-            className={`font-mono font-bold ${
+            className={`font-bold ${
               darkMode ? "text-white/90" : "text-slate-800"
             }`}
           >
