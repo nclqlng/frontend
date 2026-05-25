@@ -14,18 +14,6 @@ import MissionVisionSection from "@/components/MissionVisionSection";
 import CampaignsRecognitionSection from "@/components/CampaignsRecognitionSection";
 
 
-const recognitions = [
-  "League of Legends",
-  "2025 Medallion Qualifiers",
-  "2024–2025 Macaulay Club Qualifiers",
-  "2025 IQA Awardees",
-  "Centurion Tree MDRT Force",
-  "2026 MDRT Members",
-  "Maple Leaf PH Qualifiers",
-  "Producers' League Qualifiers",
-  "Triple A Qualifiers",
-];
-
 export default function Home() {
   const { darkMode } = useTheme();
 
@@ -283,10 +271,7 @@ export default function Home() {
 
         <CoreValuesSection darkMode={darkMode} />
 
-        <CampaignsRecognitionSection
-          darkMode={darkMode}
-          recognitions={recognitions}
-        />
+        <CampaignsRecognitionSection darkMode={darkMode} />
 
         <Footer />
       </main>
