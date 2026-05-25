@@ -8,6 +8,9 @@ import {
   UserRound,
   Flag,
 } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
+import { revealTransitionClass } from "@/components/RevealSection";
+import { useInView } from "@/hooks/useInView";
 
 type Step = {
   title: string;
@@ -129,6 +132,8 @@ function TiltCard({
 export default function LicensingFlow() {
   const { darkMode } = useTheme();
   const [activeStep, setActiveStep] = useState(0);
+  const { ref: sectionRef, visible: sectionVisible } = useInView(0.08);
+  const { ref: flowRef, visible: flowVisible } = useInView<HTMLDivElement>(0.1);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -166,8 +171,9 @@ export default function LicensingFlow() {
 
   return (
     <section
+      ref={sectionRef}
       className={`relative overflow-hidden px-6 py-28 ${
-        darkMode ? "bg-transparent" : "bg-[#f8fafc]"
+        darkMode ? "bg-transparent" : "bg-transparent"
       }`}
     >
       {/* BACKGROUND */}
@@ -178,48 +184,28 @@ export default function LicensingFlow() {
       </div>
 
       <div className="relative mx-auto max-w-7xl">
-        {/* HEADER */}
-        <div className="text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/35 bg-yellow-400/10 px-4 py-1.5 animate-[float_4s_ease-in-out_infinite]">
-            <Sparkles className="h-4 w-4 text-yellow-500" />
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-yellow-500">
-              Recruitment Workflow
-            </span>
-          </div>
-
-          <h2
-            className={`mt-6 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl ${
-              darkMode ? "text-white" : "text-[#0f172a]"
-            }`}
-          >
-            Your{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent">
-                Licensing
-              </span>
-              <span
-                className="absolute -bottom-1 left-0 h-3 w-full bg-yellow-400/30 blur-sm"
-                aria-hidden
-              />
-            </span>{" "}
-            Flow
-          </h2>
-
-          <p
-            className={`mx-auto mt-5 max-w-2xl text-base leading-8 ${
-              darkMode ? "text-white/55" : "text-slate-600"
-            }`}
-          >
-            Experience the complete advisor onboarding journey through a
-            visually immersive and structured licensing ecosystem designed
-            for efficiency, compliance, and deployment readiness.
-          </p>
-
-          <div className="mx-auto mt-10 h-px w-72 bg-gradient-to-r from-transparent via-yellow-400/70 to-transparent" />
-        </div>
+        <SectionHeading
+          darkMode={darkMode}
+          badge="Recruitment Workflow"
+          before="Your"
+          highlight="Licensing"
+          after="Flow"
+          description="Experience the complete advisor onboarding journey through a visually immersive and structured licensing ecosystem designed for efficiency, compliance, and deployment readiness."
+          descriptionClassName={`mx-auto mt-5 max-w-2xl text-base leading-8 ${
+            darkMode ? "text-white/55" : "text-slate-600"
+          }`}
+          showDivider
+          animate
+          visible={sectionVisible}
+          className="duration-1000 ease-out"
+        />
 
         {/* FLOW */}
-        <div className="relative mt-28 hidden xl:block">
+        <div
+          ref={flowRef}
+          className={`relative mt-28 hidden xl:block ${revealTransitionClass(flowVisible)}`}
+          style={{ transitionDelay: "120ms" }}
+        >
           {/* CONNECTOR SVG - Static lines only */}
           <svg
             className="absolute left-0 top-0 h-[840px] w-full"
@@ -393,7 +379,10 @@ export default function LicensingFlow() {
         </div>
 
         {/* MOBILE FALLBACK */}
-        <div className="mt-20 grid grid-cols-1 gap-6 xl:hidden">
+        <div
+          className={`mt-20 grid grid-cols-1 gap-6 xl:hidden ${revealTransitionClass(flowVisible)}`}
+          style={{ transitionDelay: "120ms" }}
+        >
           {flatSteps.map((step, i) => (
             <div
               key={i}

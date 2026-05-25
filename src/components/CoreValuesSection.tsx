@@ -4,12 +4,12 @@ import {
   Award,
   CheckCircle2,
   Shield,
-  Sparkles,
   Star,
   Users,
   type LucideIcon,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import SectionHeading from "@/components/SectionHeading";
 
 type CoreValuesSectionProps = {
   darkMode: boolean;
@@ -231,41 +231,20 @@ export default function CoreValuesSection({
       <div className="sunlife-rays pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto max-w-7xl">
-        {/* Header */}
-        <div
-          className={`text-center transition-all duration-1000 ease-out ${
-            sectionVisible
-              ? "translate-y-0 opacity-100"
-              : "translate-y-10 opacity-0"
+        <SectionHeading
+          darkMode={darkMode}
+          badge="Our Core Values"
+          before="The foundation"
+          highlight="of our culture"
+          highlightBlock
+          description="Our values shape the way we lead, serve, collaborate, and create impact as one Centurion community."
+          descriptionClassName={`mx-auto mt-4 max-w-2xl text-lg leading-8 ${
+            darkMode ? "text-white/55" : "text-slate-600"
           }`}
-        >
-          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/35 bg-yellow-400/10 px-4 py-1.5 animate-[float_4s_ease-in-out_infinite]">
-            <Sparkles className="h-4 w-4 text-yellow-500" />
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-yellow-500">
-              Our Core Values
-            </span>
-          </div>
-
-          <h2
-            className={`mt-6 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl ${
-              darkMode ? "text-white" : "text-[#0f172a]"
-            }`}
-          >
-            The foundation
-            <span className="block bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent">
-              of our culture
-            </span>
-          </h2>
-
-          <p
-            className={`mx-auto mt-4 max-w-2xl text-lg leading-8 ${
-              darkMode ? "text-white/55" : "text-slate-600"
-            }`}
-          >
-            Our values shape the way we lead, serve, collaborate, and create
-            impact as one Centurion community.
-          </p>
-        </div>
+          animate
+          visible={sectionVisible}
+          className="duration-1000 ease-out"
+        />
 
         {/* Acronym */}
         <div

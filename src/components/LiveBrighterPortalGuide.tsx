@@ -1,16 +1,20 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import {
   Mail,
   ArrowRight,
   FileText,
   BookOpen,
-  Sparkles,
   ClipboardList,
   ExternalLink,
   Download,
+  type LucideIcon,
 } from "lucide-react";
+import SectionHeading from "@/components/SectionHeading";
+import { revealTransitionClass } from "@/components/RevealSection";
+import { useInView } from "@/hooks/useInView";
 
 type ResourceLink = {
   title: string;
@@ -40,10 +44,22 @@ const guideResources: ResourceLink[] = [
   },
 ];
 
-export default function LiveBrighterPortalGuide() {
-  const { darkMode } = useTheme();
+type GuideCardProps = {
+  icon: LucideIcon;
+  title: string;
+  highlight?: string;
+  darkMode: boolean;
+  children: ReactNode;
+};
 
-  const Card = ({ icon: Icon, title, highlight, children }: any) => (
+function GuideCard({
+  icon: Icon,
+  title,
+  highlight,
+  darkMode,
+  children,
+}: GuideCardProps) {
+  return (
     <div
       className={`relative h-full rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 ${
         darkMode
@@ -71,54 +87,71 @@ export default function LiveBrighterPortalGuide() {
       {children}
     </div>
   );
+}
+
+function ProcessStepCard({
+  index,
+  darkMode,
+  icon: Icon,
+  title,
+  highlight,
+  children,
+}: {
+  index: number;
+  darkMode: boolean;
+  icon: LucideIcon;
+  title: string;
+  highlight: string;
+  children: ReactNode;
+}) {
+  const { ref, visible } = useInView<HTMLDivElement>(0.1);
+
+  return (
+    <div
+      ref={ref}
+      className={revealTransitionClass(visible)}
+      style={{ transitionDelay: `${index * 120}ms` }}
+    >
+      <GuideCard darkMode={darkMode} icon={Icon} title={title} highlight={highlight}>
+        {children}
+      </GuideCard>
+    </div>
+  );
+}
+
+export default function LiveBrighterPortalGuide() {
+  const { darkMode } = useTheme();
+  const { ref: headerRef, visible: headerVisible } =
+    useInView<HTMLDivElement>(0.08);
+  const { ref: resourcesRef, visible: resourcesVisible } =
+    useInView<HTMLDivElement>(0.1);
 
   return (
     <div className="w-full space-y-12">
 
-      {/* ================= HEADER ================= */}
-      <div className="text-center px-4">
-        <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/35 bg-yellow-400/10 px-4 py-1.5">
-          <Sparkles className="h-4 w-4 text-yellow-500" />
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-yellow-500">
-            Getting Started
-          </span>
-        </div>
-
-        <h2
-            className={`mt-6 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl ${
-                darkMode ? "text-white" : "text-[#0f172a]"
-            }`}
-            >
-            Live{" "}
-            <span className="relative inline-block">
-                <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent">
-            Brighter
-                </span>
-
-                {/* glow underline */}
-                <span
-                className="absolute -bottom-1 left-0 h-3 w-full bg-yellow-400/30 blur-sm"
-                aria-hidden
-                />
-            </span>{" "}
-            Portal
-        </h2>
-        <p
-          className={`mx-auto mt-4 max-w-3xl text-sm leading-7 ${
+      <div ref={headerRef}>
+        <SectionHeading
+          darkMode={darkMode}
+          badge="Getting Started"
+          before="Live"
+          highlight="Brighter"
+          after="Portal"
+          description="A structured onboarding journey for advisor account creation and application completion."
+          descriptionClassName={`mx-auto mt-4 max-w-3xl text-sm leading-7 ${
             darkMode ? "text-white/60" : "text-slate-600"
           }`}
-        >
-          A structured onboarding journey for advisor account creation and application completion.
-        </p>
-
-        <div className="mx-auto mt-8 h-px w-72 bg-gradient-to-r from-transparent via-yellow-400/60 to-transparent" />
+          showDivider
+          animate
+          visible={headerVisible}
+          className="duration-1000 ease-out"
+        />
       </div>
 
       {/* ================= PROCESS FLOW (FULL WIDTH) ================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 px-2">
 
         {/* STEP 1 */}
-        <Card icon={Mail} title="REGISTER & CREATE" highlight="ACCOUNT">
+        <ProcessStepCard index={0} darkMode={darkMode} icon={Mail} title="REGISTER & CREATE" highlight="ACCOUNT">
           <p className="text-xs text-slate-600 dark:text-white/60 mb-4">
             Start by accessing your invitation email and creating your Live Brighter account.
           </p>
@@ -126,20 +159,20 @@ export default function LiveBrighterPortalGuide() {
           <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-4 py-3 text-sm font-bold text-black hover:bg-yellow-500 transition">
             GET STARTED <ArrowRight size={16} />
           </button>
-        </Card>
+        </ProcessStepCard>
 
         {/* STEP 2 */}
-        <Card icon={ClipboardList} title="ACCOMPLISH" highlight="ONLINE APPLICATION">
+        <ProcessStepCard index={1} darkMode={darkMode} icon={ClipboardList} title="ACCOMPLISH" highlight="ONLINE APPLICATION">
           <p className="text-xs text-slate-600 dark:text-white/60">
             Log in and complete all required details in{" "}
             <span className="text-yellow-500 font-semibold">Profile Assessment</span>.
             It contains <span className="font-semibold">5 Tabs</span> and multiple
             information cards that must be completed.
           </p>
-        </Card>
+        </ProcessStepCard>
 
         {/* STEP 3 - FULL REQUIREMENTS */}
-        <Card icon={FileText} title="COMPLETION OF" highlight="REQUIREMENTS">
+        <ProcessStepCard index={2} darkMode={darkMode} icon={FileText} title="COMPLETION OF" highlight="REQUIREMENTS">
           <div className="space-y-4 text-xs">
 
             {/* TRAD */}
@@ -170,10 +203,10 @@ export default function LiveBrighterPortalGuide() {
             </div>
 
           </div>
-        </Card>
+        </ProcessStepCard>
 
         {/* STEP 4 - VISUAL END STATE */}
-        <Card icon={Download} title="SUBMIT & REVIEW" highlight="READY">
+        <ProcessStepCard index={3} darkMode={darkMode} icon={Download} title="SUBMIT & REVIEW" highlight="READY">
           <p className="text-xs text-slate-600 dark:text-white/60">
             Ensure all requirements are completed and ready for final submission and validation.
           </p>
@@ -181,17 +214,19 @@ export default function LiveBrighterPortalGuide() {
           <div className="mt-4 h-10 w-full rounded-lg bg-yellow-400/10 flex items-center justify-center text-[10px] text-yellow-500 font-bold">
             COMPLETION STAGE
           </div>
-        </Card>
+        </ProcessStepCard>
 
       </div>
 
       {/* ================= HELPFUL RESOURCES (FULL WIDTH SEPARATE) ================= */}
       <div
-        className={`w-full rounded-2xl border p-6 ${
+        ref={resourcesRef}
+        className={`w-full rounded-2xl border p-6 ${revealTransitionClass(resourcesVisible)} ${
           darkMode
             ? "border-yellow-400/20 bg-white/[0.02]"
             : "border-yellow-200 bg-yellow-50/30"
         }`}
+        style={{ transitionDelay: "120ms" }}
       >
         <div className="flex items-center gap-3 mb-6">
           <div className="h-px flex-1 bg-yellow-400/30" />
@@ -213,11 +248,16 @@ export default function LiveBrighterPortalGuide() {
                 key={i}
                 href={item.url}
                 target="_blank"
-                className={`group rounded-xl border p-4 transition hover:-translate-y-1 ${
+                className={`group rounded-xl border p-4 transition-all duration-700 hover:-translate-y-1 ${
+                  resourcesVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                } ${
                   darkMode
                     ? "border-white/10 bg-white/[0.03]"
                     : "border-slate-200 bg-white"
                 }`}
+                style={{ transitionDelay: `${180 + i * 100}ms` }}
               >
                 <div className="flex gap-3">
                   <div className="h-10 w-10 rounded-lg bg-yellow-400/10 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-400 group-hover:text-black transition">

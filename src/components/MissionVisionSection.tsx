@@ -1,8 +1,9 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { ArrowUpRight, Sparkles, Target, Trophy, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, Target, Trophy, type LucideIcon } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import SectionHeading from "@/components/SectionHeading";
 
 type MissionVisionSectionProps = {
   darkMode: boolean;
@@ -335,47 +336,28 @@ export default function MissionVisionSection({
       />
 
       <div className="relative mx-auto mt-14 max-w-7xl">
-        <div
-          className={`mb-16 text-center transition-all duration-1000 lg:mb-20 ${
-            sectionVisible
-              ? "translate-y-0 opacity-100"
-              : "translate-y-10 opacity-0"
-          }`}
-        >
-          <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/35 bg-yellow-400/10 px-4 py-1.5 animate-[float_4s_ease-in-out_infinite]">
-            <Sparkles className="h-4 w-4 text-yellow-500" />
-            <span className="text-xs font-bold uppercase tracking-[0.3em] text-yellow-500">
-              Purpose & Direction
-            </span>
-          </div>
-
-          <h2
-            className={`mt-6 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl ${
-              darkMode ? "text-white" : "text-[#0f172a]"
-            }`}
-          >
-            What drives{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent">
-                Centurion
-              </span>
-              <span
-                className="absolute -bottom-1 left-0 h-3 w-full bg-yellow-400/30 blur-sm"
-                aria-hidden
-              />
-            </span>
-          </h2>
-
-          <p
-            className={`mx-auto mt-4 max-w-2xl text-lg leading-8 ${
+        <div className="mb-16 lg:mb-20">
+          <SectionHeading
+            darkMode={darkMode}
+            badge="Purpose & Direction"
+            before="What drives"
+            highlight="Centurion"
+            description="Our mission fuels daily action. Our vision sets the bar for who we become."
+            descriptionClassName={`mx-auto mt-4 max-w-2xl text-lg leading-8 ${
               darkMode ? "text-white/55" : "text-slate-600"
             }`}
-          >
-            Our mission fuels daily action. Our vision sets the bar for who we
-            become.
-          </p>
+            animate
+            visible={sectionVisible}
+            className="duration-1000 ease-out"
+          />
 
-          <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3">
+          <div
+            className={`mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-3 transition-all duration-1000 ${
+              sectionVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-10 opacity-0"
+            }`}
+          >
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
