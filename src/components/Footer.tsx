@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
 import {
   Globe,
@@ -63,20 +64,22 @@ export default function Footer() {
             {/* BRAND */}
             <div className="space-y-6">
               <div className="flex items-center gap-5">
-                <img
-                  src="https://www.sunlife.com.ph/content/dam/sunlife/regional/philippines/images/logo.png"
-                  alt="Sun Life"
-                  className="h-12 w-auto"
+                <Image
+                  src="/centurion-assets/ctnbo-logo.png"
+                  alt="Centurion NBO"
+                  width={120}
+                  height={120}
+                  className="h-12 w-auto object-contain sm:h-14"
                 />
 
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.42em] text-yellow-500">
-                    Sun Life Philippines
+                    Centurion
                   </p>
                   <p className={`text-sm ${
                     darkMode ? "text-white/60" : "text-slate-500"
                   }`}>
-                    96th New Business Office
+                    Sun Life 96th New Business Office
                   </p>
                 </div>
               </div>

@@ -1,8 +1,6 @@
 "use client";
 
-import SectionHeading, {
-  SectionTitleHighlight,
-} from "@/components/SectionHeading";
+import { Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -94,36 +92,33 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
   return (
     <section
       ref={ref}
-      className={`relative overflow-x-hidden px-6 py-40 ${
+      className={`relative overflow-hidden px-6 py-40 ${
         darkMode ? "bg-[#050816]" : "bg-white"
       }`}
     >
       {/* gold ambient field */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.08),transparent_70%)]" />
 
-      <div className="relative mx-auto max-w-4xl">
-        <SectionHeading
-          darkMode={darkMode}
-          badge="Campaign Mechanics"
-          title={
-            <>
-              #2026
-              <br />
-              <span className="whitespace-nowrap">
-                <SectionTitleHighlight>ANCHORED</SectionTitleHighlight> AND{" "}
-                <span
-                  className={
-                    darkMode ? "text-blue-400" : "text-blue-700"
-                  }
-                >
-                  BECOMING
-                </span>
-              </span>
-            </>
-          }
-          animate
-          visible={visible}
-        />
+      {/* HEADER */}
+      <div className="relative mx-auto max-w-4xl text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/35 bg-yellow-400/10 px-4 py-1.5 animate-[float_4s_ease-in-out_infinite]">
+          <Sparkles className="h-4 w-4 text-yellow-500" />
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-yellow-500">
+            Campaign Mechanics
+          </span>
+        </div>
+
+        <h2
+          className={`mt-10 text-6xl font-black leading-[0.95] tracking-[-0.04em] transition-all duration-700 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          } ${darkMode ? "text-white" : "text-[#0f172a]"}`}
+        >
+          #2026
+          <br />
+          <span>
+            <span className="italic text-yellow-500">ANCHORED</span> AND BECOMING
+          </span>
+        </h2>
       </div>
 
  {/* -------------------- MODERN EDITORIAL RECOGNITION STANDARD -------------------- */}
@@ -170,8 +165,8 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
  <div className="relative mx-auto mt-14 max-w-5xl transition-all duration-700">
   {/* MAIN TITLE (big editorial style, no container) */}
   <div className="text-center">
-    <p className="text-4xl font-black tracking-tight sm:text-5xl">
-      <SectionTitleHighlight>Three pillars</SectionTitleHighlight>{" "}
+    <p className="text-4xl sm:text-5xl font-black tracking-tight">
+      <span className="text-yellow-500">Three pillars</span>{" "}
       <span className={darkMode ? "text-white" : "text-slate-900"}>
         of recognition
       </span>
@@ -193,10 +188,8 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
     <div className="group relative px-8 py-5 rounded-full backdrop-blur-md border border-yellow-400/30 bg-white/5 hover:bg-yellow-400/10 transition-all duration-500">
       <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 blur-xl" />
 
-      <p className="relative text-sm font-semibold tracking-[0.3em]">
-        <span className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent">
-          MEDALLION
-        </span>
+      <p className="relative text-sm font-semibold tracking-[0.3em] text-yellow-500">
+        MEDALLION
       </p>
     </div>
 
@@ -204,10 +197,8 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
     <div className="group relative px-8 py-5 rounded-full backdrop-blur-md border border-yellow-400/30 bg-white/5 hover:bg-yellow-400/10 transition-all duration-500">
       <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 blur-xl" />
 
-      <p className="relative text-sm font-semibold tracking-[0.3em]">
-        <span className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent">
-          MDRT
-        </span>
+      <p className="relative text-sm font-semibold tracking-[0.3em] text-yellow-500">
+        MDRT
       </p>
     </div>
 
@@ -215,10 +206,8 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
     <div className="group relative px-8 py-5 rounded-full backdrop-blur-md border border-yellow-400/30 bg-white/5 hover:bg-yellow-400/10 transition-all duration-500">
       <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition bg-gradient-to-r from-yellow-400/20 via-transparent to-yellow-400/20 blur-xl" />
 
-      <p className="relative text-sm font-semibold tracking-[0.3em]">
-        <span className="bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent">
-          MACAULAY CLUB
-        </span>
+      <p className="relative text-sm font-semibold tracking-[0.3em] text-yellow-500">
+       MACAULAY CLUB
       </p>
     </div>
   </div>
@@ -229,6 +218,18 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
   </div>
 
   </div>
+      {/* keyframes */}
+      <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      `}</style>
     </section>
   );
 }
