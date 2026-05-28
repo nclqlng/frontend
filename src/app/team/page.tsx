@@ -34,6 +34,23 @@ const tierIcons: Record<TeamTier["rank"], LucideIcon> = {
 const CARD_SLOT =
   "h-full w-full max-w-[320px] justify-self-center sm:max-w-none sm:justify-self-stretch";
 
+/** Center BM/SM (single card) and pairs; full grid for larger tiers */
+function tierMemberGridClass(memberCount: number): string {
+  if (memberCount === 1) {
+    return "grid w-full grid-cols-1 justify-items-center gap-6";
+  }
+  if (memberCount === 2) {
+    return "mx-auto grid w-full max-w-[664px] grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 sm:justify-items-stretch";
+  }
+  return "grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
+}
+
+function tierCardSlotClass(memberCount: number): string {
+  return memberCount <= 2
+    ? "h-full w-full max-w-[320px]"
+    : CARD_SLOT;
+}
+
 function MemberPhoto({
   member,
   darkMode,
@@ -199,17 +216,17 @@ function TeamHierarchy({ darkMode }: { darkMode: boolean }) {
   );
 
   return (
-    <div className="flex flex-col items-stretch">
+    <div className="flex w-full flex-col items-center">
       {activeTiers.map((tier, index) => {
         const members = membersByRank(tier.rank);
         const Icon = tierIcons[tier.rank];
         const highlight = tier.rank === "BM" || tier.rank === "SM";
 
         return (
-          <div key={tier.rank} className="flex flex-col items-center">
+          <div key={tier.rank} className="flex w-full flex-col items-center">
             {index > 0 && <TierConnector darkMode={darkMode} />}
 
-            <div className="mb-6 flex w-full max-w-[320px] flex-col items-center text-center sm:max-w-none">
+            <div className="mb-6 flex w-full flex-col items-center text-center">
               <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-yellow-400/30 bg-yellow-400/10 text-yellow-500">
                 <Icon size={22} />
               </div>
@@ -232,9 +249,9 @@ function TeamHierarchy({ darkMode }: { darkMode: boolean }) {
               </p>
             </div>
 
-            <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className={tierMemberGridClass(members.length)}>
               {members.map((member) => (
-                <div key={member.name} className={CARD_SLOT}>
+                <div key={member.name} className={tierCardSlotClass(members.length)}>
                   <MemberCard
                     member={member}
                     darkMode={darkMode}
@@ -268,7 +285,8 @@ export default function TeamPage() {
           darkMode ? "text-white" : "text-[#0f172a]"
         }`}
       >
-        <section className="relative isolate overflow-hidden px-6 pb-10 pt-44 text-center">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
+        <section className="relative isolate overflow-hidden pb-10 pt-44 text-center">
           <p className="text-xs font-bold uppercase tracking-[0.55em] text-yellow-500">
             Our Team
           </p>
@@ -293,7 +311,7 @@ export default function TeamPage() {
           <div className="mx-auto mt-10 h-px w-64 bg-gradient-to-r from-transparent via-yellow-400/70 to-transparent" />
         </section>
 
-        <div className="relative z-10 mx-auto mb-12 flex max-w-4xl flex-wrap justify-center gap-3 px-6">
+        <div className="relative z-10 mx-auto mb-12 flex max-w-4xl flex-wrap justify-center gap-3">
           {teamTiers.map((tier) => {
             const count = membersByRank(tier.rank).length;
             if (count === 0) return null;
@@ -316,8 +334,9 @@ export default function TeamPage() {
           })}
         </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-24">
+        <div className="relative z-10 pb-24">
           <TeamHierarchy darkMode={darkMode} />
+        </div>
         </div>
       </main>
 
