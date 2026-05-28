@@ -3,15 +3,15 @@
 import { useTheme } from "@/context/ThemeContext";
 
 /**
- * Shared ambient backdrop for hub-style pages (Recruitment, Training & Dev).
- * Keeps both routes visually aligned while supporting light/dark themes.
+ * Shared ambient backdrop for hub-style pages (Recruitment, Training & Dev, Team).
+ * Keeps hub routes visually aligned while supporting light/dark themes.
  */
 export default function HubPageBackground() {
   const { darkMode } = useTheme();
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 overflow-hidden transition duration-700"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden transition duration-700"
       aria-hidden
     >
       {/* Base depth gradient */}
