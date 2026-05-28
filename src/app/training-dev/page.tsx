@@ -238,6 +238,80 @@ function ModuleListItem({
 
 
 
+function ModuleContentPanel({
+
+  activeModule,
+
+  darkMode,
+
+  className = "",
+
+}: {
+
+  activeModule: (typeof trainingItems)[number];
+
+  darkMode: boolean;
+
+  className?: string;
+
+}) {
+
+  return (
+
+    <div
+
+      className={`relative overflow-hidden rounded-[32px] border p-8 lg:p-10 ${
+
+        darkMode
+
+          ? "border-white/10 bg-white/[0.04]"
+
+          : "border-slate-200 bg-white shadow-2xl"
+
+      } ${className}`}
+
+    >
+
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
+
+
+
+      <div className="relative mb-8 flex items-center justify-between">
+
+        <div>
+
+          <div className="mb-3 flex items-center gap-2">
+
+            <CheckCircle2 className="h-4 w-4 text-yellow-500" />
+
+            <p className="text-xs font-bold uppercase tracking-[0.45em] text-yellow-500">
+
+              Module Content
+
+            </p>
+
+          </div>
+
+
+
+          <h2 className="text-2xl font-black">{activeModule.label}</h2>
+
+        </div>
+
+      </div>
+
+
+
+      <div className="relative">{renderModule(activeModule.key)}</div>
+
+    </div>
+
+  );
+
+}
+
+
+
 /* ================= PAGE ================= */
 
 export default function TrainingDev() {
@@ -340,9 +414,11 @@ export default function TrainingDev() {
 
         <div className="relative mt-28 px-6 pb-36">
 
-          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 lg:grid-cols-12">
+          <div className="mx-auto max-w-7xl">
 
-            <RevealSection as="div" className="lg:col-span-5" delay={120}>
+            {/* Mobile: content appears directly under the selected module card */}
+
+            <RevealSection as="div" className="lg:hidden" delay={120}>
 
               <div className="mb-6 flex items-center justify-between">
 
@@ -370,21 +446,37 @@ export default function TrainingDev() {
 
                 {trainingItems.map((item, i) => (
 
-                  <ModuleListItem
+                  <div key={item.key}>
 
-                    key={item.key}
+                    <ModuleListItem
 
-                    item={item}
+                      item={item}
 
-                    index={i}
+                      index={i}
 
-                    isActive={activeModule.key === item.key}
+                      isActive={activeModule.key === item.key}
 
-                    darkMode={darkMode}
+                      darkMode={darkMode}
 
-                    onSelect={() => setActiveModule(item)}
+                      onSelect={() => setActiveModule(item)}
 
-                  />
+                    />
+
+                    {activeModule.key === item.key && (
+
+                      <ModuleContentPanel
+
+                        activeModule={activeModule}
+
+                        darkMode={darkMode}
+
+                        className="mt-5"
+
+                      />
+
+                    )}
+
+                  </div>
 
                 ))}
 
@@ -394,79 +486,89 @@ export default function TrainingDev() {
 
 
 
-            <RevealSection
+            {/* Desktop: module list + sticky content panel side by side */}
 
-              as="div"
+            <div className="hidden gap-10 lg:grid lg:grid-cols-12">
 
-              className="lg:col-span-7"
+              <RevealSection as="div" className="lg:col-span-5" delay={120}>
 
-              delay={240}
+                <div className="mb-6 flex items-center justify-between">
 
-              threshold={0.08}
+                  <p className="text-xs font-bold uppercase tracking-[0.45em] text-yellow-500">
 
-            >
+                    Learning Modules
 
-              <div className="sticky top-32">
+                  </p>
 
-                <div
+                  <p
 
-                  className={`relative overflow-hidden rounded-[32px] border p-8 lg:p-10 ${
+                    className={`text-xs ${darkMode ? "text-white/40" : "text-slate-500"}`}
 
-                    darkMode
+                  >
 
-                      ? "border-white/10 bg-white/[0.04]"
+                    Select a module
 
-                      : "border-slate-200 bg-white shadow-2xl"
-
-                  }`}
-
-                >
-
-                  <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
-
-
-
-                  <div className="relative mb-8 flex items-center justify-between">
-
-                    <div>
-
-                      <div className="mb-3 flex items-center gap-2">
-
-                        <CheckCircle2 className="h-4 w-4 text-yellow-500" />
-
-                        <p className="text-xs font-bold uppercase tracking-[0.45em] text-yellow-500">
-
-                          Module Content
-
-                        </p>
-
-                      </div>
-
-
-
-                      <h2 className="text-2xl font-black">
-
-                        {activeModule.label}
-
-                      </h2>
-
-                    </div>
-
-                  </div>
-
-
-
-                  <div className="relative">
-
-                    {renderModule(activeModule.key)}
-
-                  </div>
+                  </p>
 
                 </div>
 
-              </div>
 
-            </RevealSection>
+
+                <div className="space-y-5">
+
+                  {trainingItems.map((item, i) => (
+
+                    <ModuleListItem
+
+                      key={item.key}
+
+                      item={item}
+
+                      index={i}
+
+                      isActive={activeModule.key === item.key}
+
+                      darkMode={darkMode}
+
+                      onSelect={() => setActiveModule(item)}
+
+                    />
+
+                  ))}
+
+                </div>
+
+              </RevealSection>
+
+
+
+              <RevealSection
+
+                as="div"
+
+                className="lg:col-span-7"
+
+                delay={240}
+
+                threshold={0.08}
+
+              >
+
+                <div className="sticky top-32">
+
+                  <ModuleContentPanel
+
+                    activeModule={activeModule}
+
+                    darkMode={darkMode}
+
+                  />
+
+                </div>
+
+              </RevealSection>
+
+            </div>
 
           </div>
 
