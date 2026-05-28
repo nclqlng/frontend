@@ -33,27 +33,6 @@ function useInView(threshold = 0.12) {
   return { ref, visible };
 }
 
-/* -------------------- REALISTIC MEDAL LACE COMPONENT -------------------- */
-function MedalLace() {
-  return (
-    <div className="absolute left-1/2 -top-40 flex -translate-x-1/2 flex-col items-center pointer-events-none">
-      <div className="absolute left-1/2 -translate-x-[14px] h-36 w-5 bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600 rounded-full shadow-lg shadow-blue-400/30" />
-      <div className="absolute left-1/2 translate-x-[6px] h-36 w-5 bg-gradient-to-b from-blue-300 via-blue-400 to-blue-500 rounded-full shadow-lg shadow-blue-400/20" />
-      <div className="absolute left-1/2 -translate-x-1/2 h-36 w-8 bg-gradient-to-b from-blue-600/10 to-transparent" />
-
-      <div className="relative h-16 w-32 mt-36">
-        <div className="absolute -left-2 top-0 h-16 w-16 bg-gradient-to-r from-blue-400/95 to-blue-500/70 rounded-l-full shadow-lg shadow-blue-400/25" />
-        <div className="absolute -right-2 top-0 h-16 w-16 bg-gradient-to-l from-blue-400/95 to-blue-500/70 rounded-r-full shadow-lg shadow-blue-400/25" />
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-400/90 to-blue-500/60 rounded-b-2xl shadow-[0_12px_20px_rgba(59,130,246,0.2)]" />
-        <div className="absolute inset-0 h-8 bg-gradient-to-b from-blue-200/50 to-transparent rounded-b-2xl" />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-8 bg-blue-600/40 rounded-full shadow-md" />
-      </div>
-
-      <div className="absolute -top-6 left-1/2 -translate-x-1/2 h-24 w-40 bg-blue-400/8 blur-3xl rounded-full" />
-    </div>
-  );
-}
-
 /* -------------------- MEDAL WRAPPER -------------------- */
 function Medal({
   href,
@@ -71,8 +50,6 @@ function Medal({
       rel="noopener noreferrer"
       className="group relative flex justify-center"
     >
-      <MedalLace />
-
       <div className="absolute inset-0 -z-10 flex items-center justify-center">
         <div className="h-96 w-96 rounded-full bg-yellow-300/8 blur-3xl" />
       </div>
@@ -148,7 +125,7 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
 </div>
 
       {/* MEDALS */}
-      <div className="relative mt-56 flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16">
+      <div className="relative mt-20 flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16">
         <Medal
           href="https://drive.google.com/file/d/1wGtSuKMdPCmzcW2yjcZq0M8UwRvsKQ3j/view?usp=drivesdk"
           src="/centurion-assets/medallion-gif.gif"
