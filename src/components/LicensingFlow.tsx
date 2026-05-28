@@ -312,7 +312,7 @@ export default function LicensingFlow() {
                           <div
                             className={`relative flex min-h-[200px] flex-col justify-center overflow-hidden rounded-2xl p-6 text-center transition-all duration-500 ${
                               darkMode
-                                ? "bg-[#0b1120]/95 backdrop-blur-xl"
+                                ? "bg-[#0d101d] backdrop-blur-xl"
                                 : "bg-white"
                             } ${
                               isActive
@@ -393,7 +393,7 @@ export default function LicensingFlow() {
               <div
                 className={`rounded-2xl p-5 ${
                   darkMode
-                    ? "bg-[#0b1120]/90 backdrop-blur-sm"
+                    ? "bg-[#0d101d] backdrop-blur-sm"
                     : "bg-white"
                 }`}
               >

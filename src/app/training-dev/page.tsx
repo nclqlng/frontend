@@ -260,9 +260,9 @@ export default function TrainingDev() {
 
         id="training-dev"
 
-        className={`relative min-h-screen overflow-hidden transition-colors duration-500 ${
+        className={`relative z-10 min-h-screen overflow-hidden transition-colors duration-500 ${
 
-          darkMode ? "bg-[#050816] text-white" : "bg-[#f8fafc] text-[#0f172a]"
+          darkMode ? "text-white" : "text-[#0f172a]"
 
         }`}
 

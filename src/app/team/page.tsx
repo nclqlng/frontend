@@ -5,6 +5,8 @@ import { useTheme } from "@/context/ThemeContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HubPageBackground from "@/components/HubPageBackground";
+import RevealSection, { revealTransitionClass } from "@/components/RevealSection";
+import { useInView } from "@/hooks/useInView";
 import {
   teamTiers,
   membersByRank,
@@ -104,11 +106,14 @@ function MemberCard({
   member,
   darkMode,
   highlight,
+  index,
 }: {
   member: TeamMember;
   darkMode: boolean;
   highlight?: boolean;
+  index: number;
 }) {
+  const { ref, visible } = useInView<HTMLElement>(0.08);
   const hasStrengths = member.strengths.length > 0;
 
   const cardClass = highlight
@@ -121,7 +126,9 @@ function MemberCard({
 
   return (
     <article
-      className={`flex h-full min-h-[520px] w-full flex-col overflow-hidden rounded-3xl border transition hover:-translate-y-0.5 ${cardClass}`}
+      ref={ref}
+      className={`flex h-full min-h-[520px] w-full flex-col overflow-hidden rounded-3xl border transition-all duration-300 hover:-translate-y-0.5 ${revealTransitionClass(visible, "sm")} ${cardClass}`}
+      style={{ transitionDelay: `${Math.min(index, 8) * 100}ms` }}
     >
       <MemberPhoto member={member} darkMode={darkMode} />
 
@@ -193,6 +200,41 @@ function MemberCard({
   );
 }
 
+function TierPill({
+  tier,
+  count,
+  Icon,
+  pill,
+  darkMode,
+  index,
+}: {
+  tier: TeamTier;
+  count: number;
+  Icon: LucideIcon;
+  pill: string;
+  darkMode: boolean;
+  index: number;
+}) {
+  const { ref, visible } = useInView<HTMLDivElement>(0.1);
+
+  return (
+    <div
+      ref={ref}
+      className={`flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold transition-all duration-300 hover:-translate-y-0.5 ${revealTransitionClass(visible, "sm")} ${pill}`}
+      style={{ transitionDelay: `${index * 80}ms` }}
+    >
+      <Icon className="h-3.5 w-3.5 text-yellow-500" />
+      <span className="text-yellow-500">{tier.rank}</span>
+      <span className={darkMode ? "text-white/45" : "text-slate-400"}>
+        {tier.title}
+      </span>
+      <span className="rounded-full bg-yellow-400/15 px-1.5 py-0.5 text-[10px] text-yellow-500">
+        {count}
+      </span>
+    </div>
+  );
+}
+
 function TierConnector({ darkMode }: { darkMode: boolean }) {
   return (
     <div className="flex flex-col items-center py-6" aria-hidden>
@@ -223,7 +265,14 @@ function TeamHierarchy({ darkMode }: { darkMode: boolean }) {
         const highlight = tier.rank === "BM" || tier.rank === "SM";
 
         return (
-          <div key={tier.rank} className="flex w-full flex-col items-center">
+          <RevealSection
+            key={tier.rank}
+            as="div"
+            className="flex w-full flex-col items-center"
+            size="sm"
+            delay={index * 140}
+            threshold={0.08}
+          >
             {index > 0 && <TierConnector darkMode={darkMode} />}
 
             <div className="mb-6 flex w-full flex-col items-center text-center">
@@ -250,17 +299,18 @@ function TeamHierarchy({ darkMode }: { darkMode: boolean }) {
             </div>
 
             <div className={tierMemberGridClass(members.length)}>
-              {members.map((member) => (
+              {members.map((member, memberIndex) => (
                 <div key={member.name} className={tierCardSlotClass(members.length)}>
                   <MemberCard
                     member={member}
                     darkMode={darkMode}
                     highlight={highlight}
+                    index={memberIndex}
                   />
                 </div>
               ))}
             </div>
-          </div>
+          </RevealSection>
         );
       })}
     </div>
@@ -286,61 +336,66 @@ export default function TeamPage() {
         }`}
       >
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
-        <section className="relative isolate overflow-hidden pb-10 pt-44 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.55em] text-yellow-500">
-            Our Team
-          </p>
-          <h1
-            className={`mt-6 text-5xl font-black leading-tight md:text-6xl ${
-              darkMode ? "text-white" : "text-[#0f172a]"
-            }`}
+          <RevealSection
+            as="section"
+            className="relative isolate overflow-hidden pb-10 pt-44 text-center"
+            size="sm"
           >
-            THE BUILDERS
-            <span className="mt-2 block bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent">
-              Behind Centurion
-            </span>
-          </h1>
-          <p
-            className={`mx-auto mt-6 max-w-2xl text-sm leading-7 ${
-              darkMode ? "text-white/60" : "text-slate-600"
-            }`}
+            <p className="text-xs font-bold uppercase tracking-[0.55em] text-yellow-500">
+              Our Team
+            </p>
+            <h1
+              className={`mt-6 text-5xl font-black leading-tight md:text-6xl ${
+                darkMode ? "text-white" : "text-[#0f172a]"
+              }`}
+            >
+              THE BUILDERS
+              <span className="mt-2 block bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 bg-clip-text text-transparent">
+                Behind Centurion
+              </span>
+            </h1>
+            <p
+              className={`mx-auto mt-6 max-w-2xl text-sm leading-7 ${
+                darkMode ? "text-white/60" : "text-slate-600"
+              }`}
+            >
+              Meet the leaders who shape our culture, drive performance, and build
+              excellence across the organization.
+            </p>
+            <div className="mx-auto mt-10 h-px w-64 bg-gradient-to-r from-transparent via-yellow-400/70 to-transparent" />
+          </RevealSection>
+
+          <RevealSection
+            as="div"
+            className="relative z-10 mx-auto mb-12 flex max-w-4xl flex-wrap justify-center gap-3"
+            size="sm"
+            delay={120}
           >
-            Meet the leaders who shape our culture, drive performance, and build
-            excellence across the organization.
-          </p>
-          <div className="mx-auto mt-10 h-px w-64 bg-gradient-to-r from-transparent via-yellow-400/70 to-transparent" />
-        </section>
+            {teamTiers.map((tier, tierIndex) => {
+              const count = membersByRank(tier.rank).length;
+              if (count === 0) return null;
+              const Icon = tierIcons[tier.rank];
+              return (
+                <TierPill
+                  key={tier.rank}
+                  tier={tier}
+                  count={count}
+                  Icon={Icon}
+                  pill={pill}
+                  darkMode={darkMode}
+                  index={tierIndex}
+                />
+              );
+            })}
+          </RevealSection>
 
-        <div className="relative z-10 mx-auto mb-12 flex max-w-4xl flex-wrap justify-center gap-3">
-          {teamTiers.map((tier) => {
-            const count = membersByRank(tier.rank).length;
-            if (count === 0) return null;
-            const Icon = tierIcons[tier.rank];
-            return (
-              <div
-                key={tier.rank}
-                className={`flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold ${pill}`}
-              >
-                <Icon className="h-3.5 w-3.5 text-yellow-500" />
-                <span className="text-yellow-500">{tier.rank}</span>
-                <span className={darkMode ? "text-white/45" : "text-slate-400"}>
-                  {tier.title}
-                </span>
-                <span className="rounded-full bg-yellow-400/15 px-1.5 py-0.5 text-[10px] text-yellow-500">
-                  {count}
-                </span>
-              </div>
-            );
-          })}
+          <div className="relative z-10 pb-24">
+            <TeamHierarchy darkMode={darkMode} />
+          </div>
         </div>
 
-        <div className="relative z-10 pb-24">
-          <TeamHierarchy darkMode={darkMode} />
-        </div>
-        </div>
+        <Footer />
       </main>
-
-      <Footer />
     </>
   );
 }

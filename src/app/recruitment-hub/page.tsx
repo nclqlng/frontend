@@ -80,8 +80,8 @@ export default function RecruitmentHub() {
       <HubPageBackground />
       <main
         id="recruitment-hub"
-        className={`relative min-h-screen overflow-hidden transition-colors duration-500 ${
-          darkMode ? "bg-[#050816] text-white" : "bg-[#f8fafc] text-[#0f172a]"
+        className={`relative z-10 min-h-screen overflow-hidden transition-colors duration-500 ${
+          darkMode ? "text-white" : "text-[#0f172a]"
         }`}
       >
         <RevealSection
@@ -91,7 +91,7 @@ export default function RecruitmentHub() {
         >
           <div className="mx-auto max-w-5xl text-center">
             <p className="text-xs font-bold uppercase tracking-[0.55em] text-yellow-500">
-              Recruitment Hub System
+              Recruitment Hub
             </p>
 
             <h1
