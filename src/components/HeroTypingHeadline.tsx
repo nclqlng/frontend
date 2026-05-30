@@ -81,11 +81,11 @@ export default function HeroTypingHeadline({ darkMode }: HeroTypingHeadlineProps
     return () => clearTimeout(timer);
   }, [charIndex, isLineComplete, isPaused, lineIndex]);
 
+  const fullHeadline = LINES.map((l) => l.text).join(" ");
+
   return (
-    <h1
-      className={`relative w-full ${headlineClass}`}
-      aria-label={LINES.map((l) => l.text).join(" ")}
-    >
+    <h1 className={`relative w-full ${headlineClass}`}>
+      <span className="sr-only">{fullHeadline}</span>
       {/* Invisible sizer — reserves full headline space so layout never shifts */}
       <span className="pointer-events-none invisible block select-none" aria-hidden>
         {LINES.map((line) => (
@@ -100,7 +100,7 @@ export default function HeroTypingHeadline({ darkMode }: HeroTypingHeadlineProps
       </span>
 
       {/* Visible typing layer */}
-      <span className="absolute left-0 top-0 w-full" aria-live="polite">
+      <span className="absolute left-0 top-0 w-full" aria-hidden>
         {LINES.map((line, index) => {
           const isCurrent = index === lineIndex;
           const isPast = index < lineIndex;

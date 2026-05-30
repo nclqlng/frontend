@@ -35,6 +35,13 @@ import {
 /* ================= MODULE IMPORTS ================= */
 
 import ProductGuide from "@/components/modules/ProductGuide";
+import CompetitiveAnalysis from "@/components/modules/CompetitiveAnalysis";
+import MedicalGuidelines from "@/components/modules/MedicalGuidelines";
+import SubmitAppOnline from "@/components/modules/SubmitAppOnline";
+import AdvisorHomeOffice from "@/components/modules/AdvisorHomeOffice";
+import RemotePolicyServicing from "@/components/modules/RemotePolicyServicing";
+import PaymentChannel from "@/components/modules/PaymentChannel";
+import Rome from "@/components/modules/Rome";
 
 import HubPageBackground from "@/components/HubPageBackground";
 
@@ -90,7 +97,33 @@ function renderModule(key: string) {
 
       return <ProductGuide />;
 
+    case "competitive-analysis":
 
+      return <CompetitiveAnalysis />;
+
+    case "medical-guidelines":
+
+      return <MedicalGuidelines />;
+
+    case "submit-app":
+
+      return <SubmitAppOnline />;
+
+    case "aho":
+
+      return <AdvisorHomeOffice />;
+
+    case "policy-servicing":
+
+      return <RemotePolicyServicing />;
+
+    case "payment-channel":
+
+      return <PaymentChannel />;
+
+    case "rome":
+
+      return <Rome />;
 
     default:
 

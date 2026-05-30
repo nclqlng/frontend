@@ -22,7 +22,7 @@ export function SectionTitleHighlight({
     <span
       className={`relative inline-block overflow-visible px-3 pb-3 pt-1 sm:px-4 ${className}`}
     >
-      <span className="relative z-10 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent [-webkit-text-fill-color:transparent]">
+      <span className="relative z-10 text-yellow-500 bg-gradient-to-r from-yellow-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent [-webkit-text-fill-color:transparent]">
         {children}
       </span>
       <span
@@ -76,7 +76,7 @@ export default function SectionHeading({
     : "";
 
   const descriptionDefault = `mx-auto mt-4 max-w-2xl leading-7 ${
-    darkMode ? "text-white/60" : "text-slate-600"
+    darkMode ? "text-white/70" : "text-slate-600"
   } text-sm`;
 
   return (

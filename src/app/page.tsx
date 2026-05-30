@@ -1,17 +1,28 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
 
 import missionCenturion from "@/../public/centurion-assets/mission-centurion.jpg";
 import mdrtAwardees from "@/../public/centurion-assets/mdrt.jpg";
 import centurionTeam from "@/../public/centurion-assets/centurion-team.jpg";
-import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import HeroTypingHeadline from "@/components/HeroTypingHeadline";
-import CoreValuesSection from "@/components/CoreValuesSection";
-import MissionVisionSection from "@/components/MissionVisionSection";
-import CampaignsRecognitionSection from "@/components/CampaignsRecognitionSection";
+
+const MissionVisionSection = dynamic(
+  () => import("@/components/MissionVisionSection"),
+  { loading: () => <div className="min-h-[480px]" aria-hidden /> }
+);
+const CoreValuesSection = dynamic(
+  () => import("@/components/CoreValuesSection"),
+  { loading: () => <div className="min-h-[400px]" aria-hidden /> }
+);
+const CampaignsRecognitionSection = dynamic(
+  () => import("@/components/CampaignsRecognitionSection"),
+  { loading: () => <div className="min-h-[400px]" aria-hidden /> }
+);
+const Footer = dynamic(() => import("@/components/Footer"));
 
 
 export default function Home() {
@@ -81,16 +92,6 @@ export default function Home() {
             <div
               className={`sunlife-mesh pointer-events-none absolute inset-0 transition duration-700 ${
                 darkMode ? "opacity-35" : "opacity-50"
-              }`}
-            />
-
-            <Image
-              src={centurionTeam}
-              alt="Centurion Team"
-              fill
-              priority
-              className={`object-cover transition duration-700 ${
-                darkMode ? "opacity-20" : "opacity-10"
               }`}
             />
 
@@ -168,6 +169,7 @@ export default function Home() {
                       src={centurionTeam}
                       alt="Centurion Team"
                       fill
+                      priority
                       sizes="(max-width: 1024px) 100vw, 45vw"
                       className="object-cover object-[center_22%]"
                     />

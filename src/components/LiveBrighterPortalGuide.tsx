@@ -156,8 +156,11 @@ export default function LiveBrighterPortalGuide() {
             Start by accessing your invitation email and creating your Live Brighter account.
           </p>
 
-          <button className="w-full flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-4 py-3 text-sm font-bold text-black hover:bg-yellow-500 transition">
-            GET STARTED <ArrowRight size={16} />
+          <button
+            type="button"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-yellow-400 px-4 py-3 text-sm font-bold text-black hover:bg-yellow-500 transition"
+          >
+            Get started <ArrowRight size={16} aria-hidden />
           </button>
         </ProcessStepCard>
 

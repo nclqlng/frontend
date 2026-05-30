@@ -38,10 +38,12 @@ function Medal({
   href,
   src,
   alt,
+  loadMedia,
 }: {
   href: string;
   src: string;
   alt: string;
+  loadMedia: boolean;
 }) {
   return (
     <a
@@ -54,11 +56,23 @@ function Medal({
         <div className="h-96 w-96 rounded-full bg-yellow-300/8 blur-3xl" />
       </div>
 
-      <img
-        src={src}
-        alt={alt}
-        className="h-96 w-auto object-contain transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-125"
-      />
+      {loadMedia ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          width={384}
+          height={384}
+          className="h-96 w-auto object-contain transition-[transform,filter] duration-500 ease-out group-hover:scale-105 group-hover:brightness-125"
+        />
+      ) : (
+        <div
+          className="h-96 w-72 rounded-2xl bg-yellow-400/5"
+          role="img"
+          aria-label={alt}
+        />
+      )}
     </a>
   );
 }
@@ -130,18 +144,21 @@ export default function CampaignsRecognitionSection({ darkMode }: Props) {
           href="https://drive.google.com/file/d/1wGtSuKMdPCmzcW2yjcZq0M8UwRvsKQ3j/view?usp=drivesdk"
           src="/centurion-assets/medallion-gif.gif"
           alt="Medallion Recognition"
+          loadMedia={visible}
         />
 
         <Medal
           href="https://p1.aprimocdn.net/sunlife/5ab17fed-0548-44e9-8444-b321005592b7/2026%20mdrt%20guidelines-original-file.pdf"
           src="/centurion-assets/mc-gid.gif"
           alt="Macaulay Club Recognition"
+          loadMedia={visible}
         />
 
         <Medal
           href="https://drive.google.com/file/d/1A93wmFABPWFgwMlwgbEjOmsdeD8-yWHI/view?usp=drivesdk"
           src="/centurion-assets/mdrt-gif.gif"
           alt="MDRT Recognition"
+          loadMedia={visible}
         />
       </div>
 

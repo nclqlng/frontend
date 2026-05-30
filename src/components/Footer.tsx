@@ -39,7 +39,9 @@ export default function Footer() {
 
       {/* ================= SCROLL TO TOP BUTTON ================= */}
       <button
+        type="button"
         onClick={scrollToTop}
+        aria-label="Scroll to top"
         className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-400 text-[#050816] shadow-lg shadow-yellow-400/20 transition-all duration-500
         ${
           showScrollTop
@@ -47,7 +49,7 @@ export default function Footer() {
             : "pointer-events-none opacity-0 translate-y-6"
         }`}
       >
-        <ArrowUp className="h-5 w-5 animate-bounce" />
+        <ArrowUp className="h-5 w-5 motion-safe:animate-bounce" aria-hidden />
       </button>
 
       {/* ================= FOOTER ================= */}
@@ -69,7 +71,6 @@ export default function Footer() {
                   alt="Centurion NBO"
                   width={140}
                   height={140}
-                  priority
                   className="h-12 w-auto object-contain sm:h-16"
                 />
 
@@ -103,10 +104,10 @@ export default function Footer() {
             <div className="flex flex-col gap-3 md:items-end">
 
               <a
-                href="#"
+                href="/recruitment-hub"
                 className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-7 py-3 text-sm font-bold text-[#050816] transition hover:scale-[1.03]"
               >
-                <Rocket className="h-4 w-4" />
+                <Rocket className="h-4 w-4" aria-hidden />
                 Get Involved
               </a>
 
@@ -133,21 +134,21 @@ export default function Footer() {
 
               <div className="space-y-5 text-sm">
 
-                <a href="https://www.sunlife.com.ph/en/" target="_blank"
+                <a href="https://www.sunlife.com.ph/en/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-yellow-500 transition">
                   <Globe className="h-4 w-4" />
                   Sun Life Philippines
                   <ExternalLink className="ml-auto h-3 w-3 opacity-40" />
                 </a>
 
-                <a href="https://www.facebook.com/profile.php?id=61578119323360" target="_blank"
+                <a href="https://www.facebook.com/profile.php?id=61578119323360" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-yellow-500 transition">
                   <LinkIcon className="h-4 w-4" />
                   Facebook Page
                   <ExternalLink className="ml-auto h-3 w-3 opacity-40" />
                 </a>
 
-                <a href="https://www.instagram.com/live%20brighter%20with%20palmas" target="_blank"
+                <a href="https://www.instagram.com/live%20brighter%20with%20palmas" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-yellow-500 transition">
                   <LinkIcon className="h-4 w-4" />
                   Instagram

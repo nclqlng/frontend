@@ -86,7 +86,7 @@ export default function Header() {
             >
          <Image
               src="/centurion-assets/ctnbo-logo.png"
-              alt="Centurion NBO"
+              alt=""
               width={140}
               height={140}
               priority
@@ -101,7 +101,9 @@ export default function Header() {
                 return (
                   <button
                     key={item.path}
+                    type="button"
                     onClick={() => handleNavigate(item.path)}
+                    aria-current={isActive ? "page" : undefined}
                     className={`relative text-sm font-semibold transition duration-300 ${
                       isActive
                         ? "text-yellow-500"
@@ -178,7 +180,7 @@ export default function Header() {
                 ? "mt-3 max-h-[min(70dvh,520px)] grid-rows-[1fr] opacity-100"
                 : "max-h-0 grid-rows-[0fr] opacity-0"
             }`}
-            aria-hidden={!menuOpen}
+            {...(!menuOpen ? { inert: true } : {})}
           >
             <div className="overflow-hidden">
               <div
@@ -193,6 +195,7 @@ export default function Header() {
                       key={item.path}
                       type="button"
                       onClick={() => handleNavigate(item.path)}
+                      aria-current={isActive ? "page" : undefined}
                       className={navButtonClass(isActive)}
                     >
                       {item.label}

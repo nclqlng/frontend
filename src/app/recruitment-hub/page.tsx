@@ -181,7 +181,7 @@ export default function RecruitmentHub() {
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                   <button
                     type="button"
-                    className="group relative overflow-hidden rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-8 py-3 font-bold text-white transition-all duration-300 hover:shadow-xl hover:shadow-yellow-400/30"
+                    className="group relative overflow-hidden rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 px-8 py-3 font-bold text-[#050816] transition-all duration-300 hover:shadow-xl hover:shadow-yellow-400/30"
                   >
                     <span className="relative z-10">Apply Now</span>
                     <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-yellow-500 to-yellow-600 transition-transform duration-500 group-hover:translate-x-0" />
@@ -203,7 +203,7 @@ export default function RecruitmentHub() {
 
                 <p
                   className={`mt-6 text-xs uppercase tracking-wide ${
-                    darkMode ? "text-white/30" : "text-slate-400"
+                    darkMode ? "text-white/55" : "text-slate-500"
                   }`}
                 >
                   Begin your brighter tomorrow today
