@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "download-training-assets": "powershell -ExecutionPolicy Bypass -File scripts/download-training-assets.ps1",
+    "download-ebooks": "node scripts/download-ebooks.mjs",
     "postinstall": "node scripts/copy-pdf-worker.mjs"
   },
   "dependencies": {

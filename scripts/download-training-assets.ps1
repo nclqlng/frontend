@@ -14,10 +14,14 @@ function Download-DriveFile($fileId, $outPath) {
   }
   $url = "https://drive.google.com/uc?export=download&id=$fileId"
   Write-Host "Downloading $fileId -> $outPath"
-  Invoke-WebRequest -Uri $url -OutFile $outPath -UseBasicParsing
-  $size = (Get-Item $outPath).Length
-  if ($size -lt 1024) {
-    throw "Download too small ($size bytes) for $outPath - file may require auth."
+  try {
+    Invoke-WebRequest -Uri $url -OutFile $outPath -UseBasicParsing
+    $size = (Get-Item $outPath).Length
+    if ($size -lt 1024) {
+      throw "Download too small ($size bytes) for $outPath - file may require auth."
+    }
+  } catch {
+    Write-Warning "Failed to download $outPath : $_"
   }
 }
 
@@ -104,5 +108,33 @@ Download-DriveFile "1ILmg5PZ9n6lJHm2Oilbe3zmkruquMuUs" (Join-Path $root "submit-
 Download-DriveFile "1Y9ZM77ZqWUzPR1rkg7qlIbtcVAdHgDGe" (Join-Path $root "submit-app\bcos-3-steps.gif")
 Download-DriveFile "1VB5Bz5ua1Yy2uA0gMNxlLWi3nGjBGpxn" (Join-Path $root "submit-app\bcos-client-guide.png")
 Download-DriveFile "14ckJdLXGK8C8FtQXp4MxZF6Tf5ciKBMN" (Join-Path $root "submit-app\bcos-troubleshooting.pdf")
+
+# Policy Delivery via Courier
+Download-DriveFile "1L_bhWtCRkg0oLIocz2fuwkf_EmG2W26J" (Join-Path $root "courier\courier-delivery-guide.pdf")
+Download-DriveFile "1blB_zZgjuWZ9X2Vedd6zqF1wFG4SfjXL" (Join-Path $root "courier\epolicy-contracts.pdf")
+Download-DriveFile "15LSaG2uC28cW1YCZCYKvfRo5iuBRTk8l" (Join-Path $root "courier\client-consent-courier.pdf")
+Download-DriveFile "1tSfAdba2fE6D1jq9IfeYZvVsvWX86SrT" (Join-Path $root "courier\my-sun-life-client-portal.pdf")
+
+# SLAMCI
+# Google Sites image URLs often 403; use Drive thumbnail of welcome kit instead
+Download-Url "https://drive.google.com/thumbnail?id=1V4TfcdFLEAqowgRhYkAshLRu_4itR-QK&sz=w1280" (Join-Path $root "slamci\slamci-overview.jpg")
+# Generic MF (18XmsLbOhlfNfeGxRe53KSJoc7i4OLmDZ) returns 404 — file no longer public on Drive
+Download-DriveFile "1q6Lv8_n26pyHRMk0kl6RDsUYLELIpVlT" (Join-Path $root "slamci\welcome-kit-2021.pdf")
+Download-DriveFile "18PwXMIpSLlsxMB6By55zRhAnIx2BM1ce" (Join-Path $root "slamci\digital-channels-one-pager.pdf")
+Download-DriveFile "1IxCjnoBhEcRr8V-dm37fT2pSlK4r7oKw" (Join-Path $root "slamci\bills-payment-guide.pdf")
+
+# Underwriting Essentials
+Download-DriveFile "1xBr8g0qRZ9plIriuSsuwAPC2jY0aIIRy" (Join-Path $root "underwriting\uw-covid-pandemic.pdf")
+Download-DriveFile "1gFNkSs0dLrP-HRK5sLqdCmcZEHw-92U5" (Join-Path $root "underwriting\non-med-special-test-limits.pdf")
+Download-DriveFile "1F3ZxIxDujeex95McuFbM3MlNzgbkh2MD" (Join-Path $root "underwriting\uw-manual-health-updates.pdf")
+Download-DriveFile "1oPAwdVzqQVqhJ0ajuPMXaCTEHDGrXT3V" (Join-Path $root "underwriting\module-1-nba-processing.pptx")
+Download-DriveFile "1M8Oswb2-bkTGkue9-zSELhRfjgBSpJpI" (Join-Path $root "underwriting\module-2-nb-guidelines.pdf")
+Download-DriveFile "1WvDg-vLh7fcY8NMlbRXcuUMf6jidOlZd" (Join-Path $root "underwriting\module-3-medical-uwr.pdf")
+Download-DriveFile "1fU3XFIT98PoJaN4QZ8lbZT2510Jx3rA_" (Join-Path $root "underwriting\module-5-large-case.pdf")
+
+# Claims Essentials
+Download-DriveFile "1hYTgnkcab4w_BlCPD6bqAr5GA3jrzZqd" (Join-Path $root "claims\claims-learning-session.pdf")
+Download-DriveFile "1aJT6KQTsoDRIBewUV2RzL1WC0Go9vLSp" (Join-Path $root "claims\new-claim-requirements.pdf")
+Download-DriveFile "1uUXHp_CV4fYc5JwZ5Ux4yuSFmLKmD99Z" (Join-Path $root "claims\policy-riders-provisions.pptx")
 
 Write-Host "All training assets downloaded."

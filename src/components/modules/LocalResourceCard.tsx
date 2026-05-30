@@ -10,7 +10,7 @@ export type LocalResource = {
   src: string;
   description?: string;
   icon?: LucideIcon;
-  mediaType: "pdf" | "image";
+  mediaType: "pdf" | "image" | "office";
   downloadName?: string;
 };
 
@@ -67,6 +67,14 @@ export default function LocalResourceCard({
           compact={compact}
           className={previewHeight}
         />
+      ) : item.mediaType === "office" ? (
+        <div
+          className={`border-t px-4 py-8 text-center ${darkMode ? "border-white/10 bg-black/20" : "border-slate-200 bg-slate-50"} ${previewHeight}`}
+        >
+          <p className={`text-sm ${moduleSubtleText(darkMode)}`}>
+            PowerPoint preview is not available here. Use the download button to open the file.
+          </p>
+        </div>
       ) : (
         <div
           className={`border-t ${darkMode ? "border-white/10 bg-black/20" : "border-slate-200 bg-slate-50"} ${fullImage ? "p-4" : previewHeight}`}

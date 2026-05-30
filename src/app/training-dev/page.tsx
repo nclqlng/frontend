@@ -42,6 +42,11 @@ import AdvisorHomeOffice from "@/components/modules/AdvisorHomeOffice";
 import RemotePolicyServicing from "@/components/modules/RemotePolicyServicing";
 import PaymentChannel from "@/components/modules/PaymentChannel";
 import Rome from "@/components/modules/Rome";
+import PolicyDeliveryCourier from "@/components/modules/PolicyDeliveryCourier";
+import Slamci from "@/components/modules/Slamci";
+import UnderwritingEssentials from "@/components/modules/UnderwritingEssentials";
+import ClaimsEssentials from "@/components/modules/ClaimsEssentials";
+import Ebooks from "@/components/modules/Ebooks";
 
 import HubPageBackground from "@/components/HubPageBackground";
 
@@ -124,6 +129,26 @@ function renderModule(key: string) {
     case "rome":
 
       return <Rome />;
+
+    case "courier":
+
+      return <PolicyDeliveryCourier />;
+
+    case "slamci":
+
+      return <Slamci />;
+
+    case "underwriting":
+
+      return <UnderwritingEssentials />;
+
+    case "claims":
+
+      return <ClaimsEssentials />;
+
+    case "ebooks":
+
+      return <Ebooks />;
 
     default:
 

@@ -96,4 +96,30 @@ export const TRAINING_ASSETS = {
     securityBank: "/training-assets/payment-channel/security-bank.jpg",
     maya: "/training-assets/payment-channel/maya.jpg",
   },
+  courier: {
+    courierDelivery: "/training-assets/courier/courier-delivery-guide.pdf",
+    epolicyContracts: "/training-assets/courier/epolicy-contracts.pdf",
+    clientConsent: "/training-assets/courier/client-consent-courier.pdf",
+    clientPortal: "/training-assets/courier/my-sun-life-client-portal.pdf",
+  },
+  slamci: {
+    overview: "/training-assets/slamci/slamci-overview.jpg",
+    welcomeKit: "/training-assets/slamci/welcome-kit-2021.pdf",
+    digitalChannels: "/training-assets/slamci/digital-channels-one-pager.pdf",
+    billsPaymentGuide: "/training-assets/slamci/bills-payment-guide.pdf",
+  },
+  underwriting: {
+    covid: "/training-assets/underwriting/uw-covid-pandemic.pdf",
+    nonMedLimits: "/training-assets/underwriting/non-med-special-test-limits.pdf",
+    uwManualHealth: "/training-assets/underwriting/uw-manual-health-updates.pdf",
+    module1: "/training-assets/underwriting/module-1-nba-processing.pptx",
+    module2: "/training-assets/underwriting/module-2-nb-guidelines.pdf",
+    module3: "/training-assets/underwriting/module-3-medical-uwr.pdf",
+    module5: "/training-assets/underwriting/module-5-large-case.pdf",
+  },
+  claims: {
+    learningSession: "/training-assets/claims/claims-learning-session.pdf",
+    requirements: "/training-assets/claims/new-claim-requirements.pdf",
+    policyRiders: "/training-assets/claims/policy-riders-provisions.pptx",
+  },
 } as const;
